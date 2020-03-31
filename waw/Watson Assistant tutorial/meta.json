@@ -1,0 +1,18 @@
+{
+    "description": "",
+    "language": "en",
+    "learning_opt_out": false,
+    "name": "Watson Assistant tutorial",
+    "system_settings": {
+        "tooling": {
+            "store_generic_responses": true
+        },
+        "disambiguation": {
+            "prompt": "Did you mean:",
+            "none_of_the_above_prompt": "None of the above"
+        },
+        "human_agent_assist": {
+            "prompt": "Did you mean:"
+        }
+    }
+}

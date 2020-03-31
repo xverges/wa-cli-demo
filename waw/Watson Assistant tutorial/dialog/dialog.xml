@@ -1,0 +1,431 @@
+<nodes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node name="Welcome">
+    <type>standard</type>
+    <condition>welcome</condition>
+    <output>
+      <generic structure="listItem">
+        <values structure="listItem">
+          <text>Welcome to the Watson Assistant tutorial!</text>
+        </values>
+        <response_type>text</response_type>
+        <selection_policy>sequential</selection_policy>
+      </generic>
+    </output>
+    <metadata structure="emptyDict"/>
+  </node>
+  <node name="node_2_1533822216425">
+    <type>standard</type>
+    <condition>#General_About_You</condition>
+    <output>
+      <generic structure="listItem">
+        <values structure="listItem">
+          <text>I am a chat bot that is designed to answer your questions about the Truck Stop Gourmand restaurant. What's your name?</text>
+        </values>
+        <response_type>text</response_type>
+        <selection_policy>sequential</selection_policy>
+      </generic>
+    </output>
+    <metadata structure="emptyDict"/>
+    <nodes>
+      <node name="node_3_1533822448219">
+        <type>standard</type>
+        <condition>@sys-person</condition>
+        <context>
+          <username>&lt;? @sys-person.literal ?&gt;</username>
+        </context>
+        <output>
+          <generic structure="listItem">
+            <values structure="listItem">
+              <text>Hello, &lt;? @sys-person.literal ?&gt;! It's lovely to meet you. How can I help you today?</text>
+            </values>
+            <response_type>text</response_type>
+            <selection_policy>sequential</selection_policy>
+          </generic>
+        </output>
+        <metadata structure="emptyDict"/>
+      </node>
+      <node name="node_4_1533822931620">
+        <type>standard</type>
+        <condition>true</condition>
+        <output>
+          <generic structure="listItem">
+            <values structure="listItem">
+              <text>How can I help you today?</text>
+            </values>
+            <response_type>text</response_type>
+            <selection_policy>sequential</selection_policy>
+          </generic>
+        </output>
+        <metadata structure="emptyDict"/>
+      </node>
+    </nodes>
+  </node>
+  <node name="node_1_1533665752753">
+    <type>standard</type>
+    <condition>#General_Greetings</condition>
+    <output structure="emptyDict"/>
+    <digress_in>does_not_return</digress_in>
+    <digress_out>allow_all</digress_out>
+    <metadata>
+      <_customization>
+        <mcr type="boolean">True</mcr>
+      </_customization>
+    </metadata>
+    <nodes>
+      <node name="node_6_1533823798863">
+        <type>response_condition</type>
+        <condition>$username</condition>
+        <output>
+          <generic structure="listItem">
+            <values structure="listItem">
+              <text>Good day to you, $username!</text>
+            </values>
+            <response_type>text</response_type>
+          </generic>
+        </output>
+        <metadata structure="emptyDict"/>
+      </node>
+      <node name="node_5_1533823602062">
+        <type>response_condition</type>
+        <output>
+          <generic structure="listItem">
+            <values structure="listItem">
+              <text>Good day to you!</text>
+            </values>
+            <response_type>text</response_type>
+            <selection_policy>sequential</selection_policy>
+          </generic>
+        </output>
+        <metadata structure="emptyDict"/>
+      </node>
+    </nodes>
+  </node>
+  <node name="node_5_1533668312710">
+    <type>standard</type>
+    <condition>#about_restaurant</condition>
+    <output>
+      <generic structure="listItem">
+        <source>https://www.ibmlearningcenter.com/wp-content/uploads/2018/02/IBM-Learning-Center-Food4.jpg</source>
+        <response_type>image</response_type>
+      </generic>
+      <generic structure="listItem">
+        <values structure="listItem">
+          <text>Truck Stop Gourmand is the brain child of Gloria and Fred Smith. What started out as a food truck in 2004 has expanded into a thriving restaurant. We now have one brick and mortar restaurant in downtown Portland. The bigger kitchen brought with it new chefs, but each one is faithful to the philosophy that made the Smith food truck so popular to begin with: deliver fresh, local produce in inventive and delicious ways. Join us for lunch or dinner seven days a week. Or order a cake from our bakery.</text>
+        </values>
+        <response_type>text</response_type>
+        <selection_policy>sequential</selection_policy>
+      </generic>
+    </output>
+    <metadata structure="emptyDict"/>
+  </node>
+  <node name="node_6_1533669467615">
+    <type>standard</type>
+    <condition>#menu</condition>
+    <output>
+      <generic structure="listItem">
+        <values structure="listItem">
+          <text>In keeping with our commitment to giving you only fresh local ingredients, our menu changes daily to accommodate the produce we pick up in the morning. You can find today's menu on our website.</text>
+        </values>
+        <response_type>text</response_type>
+        <selection_policy>sequential</selection_policy>
+      </generic>
+      <generic structure="listItem">
+        <title>Which menu do you want to see?</title>
+        <options structure="listItem">
+          <label>Standard</label>
+          <value>
+            <input>
+              <text>standard menu</text>
+            </input>
+          </value>
+        </options>
+        <options structure="listItem">
+          <label>Vegetarian</label>
+          <value>
+            <input>
+              <text>vegetarian menu</text>
+            </input>
+          </value>
+        </options>
+        <options structure="listItem">
+          <label>Cake shop</label>
+          <value>
+            <input>
+              <text>cake shop menu</text>
+            </input>
+          </value>
+        </options>
+        <response_type>option</response_type>
+      </generic>
+    </output>
+    <metadata structure="emptyDict"/>
+    <nodes>
+      <node name="node_8_1533671850628">
+        <type>standard</type>
+        <condition>@menu:vegetarian</condition>
+        <output>
+          <generic structure="listItem">
+            <values structure="listItem">
+              <text>To see our vegetarian menu, go to the &lt;a href="https://www.example.com/vegetarian-menu.html" target="blank"&gt;vegetarian menu&lt;/a&gt; page on our website.</text>
+            </values>
+            <response_type>text</response_type>
+            <selection_policy>sequential</selection_policy>
+          </generic>
+        </output>
+        <metadata structure="emptyDict"/>
+      </node>
+      <node name="node_9_1533672044270">
+        <type>standard</type>
+        <condition>@menu:cake</condition>
+        <output>
+          <generic structure="listItem">
+            <values structure="listItem">
+              <text>To see our cake shop menu, go to the &lt;a href="https://www.example.com/menu.html" target="blank"&gt;cake shop menu&lt;/a&gt; page on our website.</text>
+            </values>
+            <response_type>text</response_type>
+            <selection_policy>sequential</selection_policy>
+          </generic>
+        </output>
+        <metadata structure="emptyDict"/>
+      </node>
+      <node name="node_7_1533671665264">
+        <type>standard</type>
+        <condition>@menu:standard</condition>
+        <output>
+          <generic structure="listItem">
+            <values structure="listItem">
+              <text>To see our menu, go to the &lt;a href="https://www.example.com/menu.html" target="blank"&gt;menu&lt;/a&gt; page on our website.</text>
+            </values>
+            <response_type>text</response_type>
+            <selection_policy>sequential</selection_policy>
+          </generic>
+        </output>
+        <metadata structure="emptyDict"/>
+      </node>
+    </nodes>
+  </node>
+  <node name="node_3_1533758069575">
+    <type>standard</type>
+    <condition>#cancel_order</condition>
+    <context>
+      <ordernumber>&lt;? @order_number.literal ?&gt;</ordernumber>
+    </context>
+    <output>
+      <generic structure="listItem">
+        <values structure="listItem">
+          <text>If the pickup time is more than 48 hours from now, you can cancel your order.</text>
+        </values>
+        <response_type>text</response_type>
+        <selection_policy>sequential</selection_policy>
+      </generic>
+    </output>
+    <goto>
+      <behavior>skip_user_input</behavior>
+    </goto>
+    <metadata structure="emptyDict"/>
+    <nodes>
+      <node name="node_7_1533762200130" title="Number provided">
+        <type>standard</type>
+        <condition>@order_number</condition>
+        <output>
+          <generic structure="listItem">
+            <values structure="listItem">
+              <text>Just to confirm, you want to cancel order $ordernumber?</text>
+            </values>
+            <response_type>text</response_type>
+            <selection_policy>sequential</selection_policy>
+          </generic>
+        </output>
+        <metadata structure="emptyDict"/>
+        <nodes>
+          <node name="node_8_1533762449527">
+            <type>standard</type>
+            <condition>#yes</condition>
+            <output>
+              <generic structure="listItem">
+                <values structure="listItem">
+                  <text>Ok. The order $ordernumber is canceled. We hope we get the opportunity to bake a cake for you sometime soon.</text>
+                </values>
+                <response_type>text</response_type>
+                <selection_policy>sequential</selection_policy>
+              </generic>
+            </output>
+            <metadata structure="emptyDict"/>
+          </node>
+          <node name="node_9_1533762636065">
+            <type>standard</type>
+            <condition>true</condition>
+            <output>
+              <generic structure="listItem">
+                <values structure="emptyList"/>
+                <response_type>text</response_type>
+                <selection_policy>sequential</selection_policy>
+              </generic>
+            </output>
+            <goto>
+              <behavior>jump_to</behavior>
+              <target>node_4_1533760873331</target>
+              <selector>condition</selector>
+            </goto>
+            <metadata structure="emptyDict"/>
+          </node>
+        </nodes>
+      </node>
+      <node name="node_4_1533760873331" title="Ask for order number">
+        <type>standard</type>
+        <condition>true</condition>
+        <output>
+          <generic structure="listItem">
+            <values structure="listItem">
+              <text>What is the order number?</text>
+            </values>
+            <response_type>text</response_type>
+            <selection_policy>sequential</selection_policy>
+          </generic>
+        </output>
+        <metadata structure="emptyDict"/>
+        <nodes>
+          <node name="node_5_1533761145525">
+            <type>standard</type>
+            <condition>@order_number</condition>
+            <context>
+              <ordernumber>&lt;? @order_number.literal ?&gt;</ordernumber>
+            </context>
+            <output>
+              <generic structure="listItem">
+                <values structure="listItem">
+                  <text>Ok. The order $ordernumber is canceled. We hope we get the opportunity to bake a cake for you sometime soon.</text>
+                </values>
+                <response_type>text</response_type>
+                <selection_policy>sequential</selection_policy>
+              </generic>
+            </output>
+            <metadata structure="emptyDict"/>
+          </node>
+          <node name="node_10_1533765557331">
+            <type>standard</type>
+            <condition>input.text.find('\d')</condition>
+            <output>
+              <generic structure="listItem">
+                <values structure="listItem">
+                  <text>The correct format for our order numbers is AAnnnnn. The A's represents 2 upper-case letters, and the n's represents 5 numbers. Do you have an order number with that format?</text>
+                </values>
+                <response_type>text</response_type>
+                <selection_policy>sequential</selection_policy>
+              </generic>
+            </output>
+            <metadata structure="emptyDict"/>
+            <nodes>
+              <node name="node_11_1533765985455">
+                <type>standard</type>
+                <condition>true</condition>
+                <output structure="emptyDict"/>
+                <digress_out>allow_all</digress_out>
+                <metadata>
+                  <_customization>
+                    <mcr type="boolean">True</mcr>
+                  </_customization>
+                </metadata>
+                <nodes>
+                  <node name="node_7_1533832859716">
+                    <type>response_condition</type>
+                    <condition>@order_number</condition>
+                    <context>
+                      <ordernumber>&lt;? @order_number.literal ?&gt;</ordernumber>
+                    </context>
+                    <output>
+                      <generic structure="listItem">
+                        <values structure="listItem">
+                          <text>Ok. The order $ordernumber is canceled. We hope we get the opportunity to bake a cake for you sometime soon.</text>
+                        </values>
+                        <response_type>text</response_type>
+                        <selection_policy>sequential</selection_policy>
+                      </generic>
+                    </output>
+                    <metadata structure="emptyDict"/>
+                  </node>
+                  <node name="node_8_1533832873625">
+                    <type>response_condition</type>
+                    <condition>true</condition>
+                    <output>
+                      <generic structure="listItem">
+                        <values structure="listItem">
+                          <text>I need the order number to cancel the order for you. If you don't know the order number, please call us at 958-234-3456 to cancel over the phone.</text>
+                        </values>
+                        <response_type>text</response_type>
+                      </generic>
+                    </output>
+                    <metadata structure="emptyDict"/>
+                  </node>
+                </nodes>
+              </node>
+            </nodes>
+          </node>
+          <node name="node_6_1533761495810">
+            <type>standard</type>
+            <condition>true</condition>
+            <output>
+              <generic structure="listItem">
+                <values structure="listItem">
+                  <text>I need the order number to cancel the order for you. If you don't know the order number, please call us at 958-234-3456 to cancel over the phone.</text>
+                </values>
+                <response_type>text</response_type>
+                <selection_policy>sequential</selection_policy>
+              </generic>
+            </output>
+            <metadata structure="emptyDict"/>
+          </node>
+        </nodes>
+      </node>
+    </nodes>
+  </node>
+  <node name="node_2_1533746927149">
+    <type>standard</type>
+    <condition>#Customer_Care_Contact_Us</condition>
+    <output>
+      <generic structure="listItem">
+        <values structure="listItem">
+          <text>You can call us during business hours at (207)555-1234, send us email at foodies@example.com, or submit feedback through our &lt;a href="http://www.example.com/feedback.html" target="_blank"&gt;website&lt;/a&gt;.</text>
+        </values>
+        <response_type>text</response_type>
+        <selection_policy>sequential</selection_policy>
+      </generic>
+    </output>
+    <digress_in>does_not_return</digress_in>
+    <metadata structure="emptyDict"/>
+  </node>
+  <node name="node_2_1533665915866">
+    <type>standard</type>
+    <condition>#General_Ending</condition>
+    <output>
+      <generic structure="listItem">
+        <values structure="listItem">
+          <text>OK. See you later.</text>
+        </values>
+        <response_type>text</response_type>
+        <selection_policy>sequential</selection_policy>
+      </generic>
+    </output>
+    <metadata structure="emptyDict"/>
+  </node>
+  <node name="Anything else">
+    <type>standard</type>
+    <condition>anything_else</condition>
+    <output>
+      <generic structure="listItem">
+        <values>
+          <text>I didn't understand. You can try rephrasing.</text>
+        </values>
+        <values>
+          <text>Can you reword your statement? I'm not understanding.</text>
+        </values>
+        <values>
+          <text>I didn't get your meaning.</text>
+        </values>
+        <response_type>text</response_type>
+        <selection_policy>sequential</selection_policy>
+      </generic>
+    </output>
+    <metadata structure="emptyDict"/>
+  </node>
+</nodes>
