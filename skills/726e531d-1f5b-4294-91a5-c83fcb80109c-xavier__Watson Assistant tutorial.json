@@ -2127,7 +2127,7 @@
             ]
         }
     ],
-    "updated": "2020-03-31T10:05:29.186Z",
+    "updated": "2020-03-31T11:22:29.157Z",
     "entities": [
         {
             "entity": "menu",
@@ -2180,8 +2180,7 @@
         },
         {
             "entity": "sys-date",
-            "values": [],
-            "fuzzy_match": true
+            "values": []
         },
         {
             "entity": "sys-number",
@@ -2193,8 +2192,7 @@
         },
         {
             "entity": "sys-time",
-            "values": [],
-            "fuzzy_match": true
+            "values": []
         }
     ],
     "language": "en",
@@ -2232,6 +2230,84 @@
             "conditions": "anything_else",
             "dialog_node": "Anything else",
             "previous_sibling": "node_2_1533665915866"
+        },
+        {
+            "type": "event_handler",
+            "output": {},
+            "parent": "slot_9_1585653554338",
+            "context": {
+                "guests": "@sys-number"
+            },
+            "conditions": "@sys-number",
+            "event_name": "input",
+            "dialog_node": "handler_2_1585653554342"
+        },
+        {
+            "type": "event_handler",
+            "output": {},
+            "parent": "slot_2_1585653512217",
+            "context": {
+                "time": "@sys-time"
+            },
+            "conditions": "@sys-time",
+            "event_name": "input",
+            "dialog_node": "handler_4_1585653512221"
+        },
+        {
+            "type": "event_handler",
+            "output": {
+                "text": {
+                    "values": [
+                        "What day would you like to come in?"
+                    ],
+                    "selection_policy": "sequential"
+                }
+            },
+            "parent": "slot_9_1585653481576",
+            "event_name": "focus",
+            "dialog_node": "handler_5_1585653481591",
+            "previous_sibling": "handler_7_1585653481591"
+        },
+        {
+            "type": "event_handler",
+            "output": {
+                "text": {
+                    "values": [
+                        "How many people will be dining?"
+                    ],
+                    "selection_policy": "sequential"
+                }
+            },
+            "parent": "slot_9_1585653554338",
+            "event_name": "focus",
+            "dialog_node": "handler_6_1585653554342",
+            "previous_sibling": "handler_2_1585653554342"
+        },
+        {
+            "type": "event_handler",
+            "output": {},
+            "parent": "slot_9_1585653481576",
+            "context": {
+                "date": "@sys-date"
+            },
+            "conditions": "@sys-date",
+            "event_name": "input",
+            "dialog_node": "handler_7_1585653481591"
+        },
+        {
+            "type": "event_handler",
+            "output": {
+                "text": {
+                    "values": [
+                        "What time do you want the reservation to be made for?"
+                    ],
+                    "selection_policy": "sequential"
+                }
+            },
+            "parent": "slot_2_1585653512217",
+            "event_name": "focus",
+            "dialog_node": "handler_8_1585653512221",
+            "previous_sibling": "handler_4_1585653512221"
         },
         {
             "type": "standard",
@@ -2456,7 +2532,7 @@
             "metadata": {},
             "conditions": "#about_restaurant",
             "dialog_node": "node_5_1533668312710",
-            "previous_sibling": "node_1_1533665752753"
+            "previous_sibling": "node_6_1585653414246"
         },
         {
             "type": "standard",
@@ -2590,6 +2666,25 @@
             "metadata": {},
             "conditions": "$username",
             "dialog_node": "node_6_1533823798863"
+        },
+        {
+            "type": "frame",
+            "output": {
+                "generic": [
+                    {
+                        "values": [
+                            {
+                                "text": "OK. I am making you a reservation for $guests on $date at $time."
+                            }
+                        ],
+                        "response_type": "text",
+                        "selection_policy": "sequential"
+                    }
+                ]
+            },
+            "conditions": "#reservation",
+            "dialog_node": "node_6_1585653414246",
+            "previous_sibling": "node_1_1533665752753"
         },
         {
             "type": "standard",
@@ -2758,6 +2853,26 @@
             "conditions": "true",
             "dialog_node": "node_9_1533762636065",
             "previous_sibling": "node_8_1533762449527"
+        },
+        {
+            "type": "slot",
+            "parent": "node_6_1585653414246",
+            "variable": "$time",
+            "dialog_node": "slot_2_1585653512217",
+            "previous_sibling": "slot_9_1585653481576"
+        },
+        {
+            "type": "slot",
+            "parent": "node_6_1585653414246",
+            "variable": "$date",
+            "dialog_node": "slot_9_1585653481576"
+        },
+        {
+            "type": "slot",
+            "parent": "node_6_1585653414246",
+            "variable": "$guests",
+            "dialog_node": "slot_9_1585653554338",
+            "previous_sibling": "slot_2_1585653512217"
         },
         {
             "type": "standard",
