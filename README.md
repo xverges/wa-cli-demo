@@ -1,5 +1,5 @@
 
-Initialise the project.  
+### Initialise the project.
 
 ```
 $ git init
@@ -21,7 +21,7 @@ $ git status
 $ git commit -m "Initial commit"
 ```
 
-Get a skill from a public repo and deploy it.
+### Get a skill from a public repo and deploy it.
 
 ```
 $ wget -P skills https://raw.githubusercontent.com/watson-developer-cloud/community/master/watson-assistant/complex_dialog_tutorial.json
@@ -31,7 +31,7 @@ $ wa-cli skills list
 2020-03-19T15:48:04.359Z   f8bc1ed2-7dfa-4f4e-b519-3203947703b1   Watson Assistant tutorial
 ```
 
-Enable the use of sanboxes for that skill, and commit the decomposed skill.
+### Enable the use of sanboxes for that skill, and commit the decomposed skill.
 
 ```
 $ wa-cli sandbox init "Watson Assistant tutorial"
@@ -50,7 +50,7 @@ $ git commit -m "Decomposed Watson Assistant tutorial"
 ```
 
 
-Create a sandbox and work with it
+### Create a sandbox and work with it.
 
 ```
 $ git checkout -b xavier
@@ -96,4 +96,21 @@ $ git status
 	new file:   waw/Watson Assistant tutorial/intents/reservation.csv
 	modified:   waw/Watson Assistant tutorial/meta.json
 $ git commit -m "Completed first slots tutorial"
+$ git push --set-upstream origin xavier
 ```
+
+### Apply your work to the shared skill
+
+You can [take a look at the
+PR](https://github.com/xverges/wa-cli-demo/pull/1/files#diff-ca48ca00d4b4567e58414f4bfc230146):
+the diff is quite readable, while it would be very hard to get a similar
+understanding of what has changed by looking at the
+
+After the PR has been merged into the `master`branch,
+
+```
+$ git checkout master
+$ git pull
+$ wa-cli sandbox deploy "Watson Assistant tutorial"
+```
+
