@@ -2127,7 +2127,7 @@
             ]
         }
     ],
-    "updated": "2020-04-01T11:48:47.635Z",
+    "updated": "2020-04-01T14:33:17.511Z",
     "entities": [
         {
             "entity": "menu",
@@ -2234,6 +2234,25 @@
         {
             "type": "event_handler",
             "output": {
+                "text": {
+                    "values": [
+                        "Please specify a number that is larger than 0"
+                    ],
+                    "selection_policy": "sequential"
+                }
+            },
+            "parent": "slot_9_1585653554338",
+            "next_step": {
+                "behavior": "reprompt"
+            },
+            "conditions": "@sys-number == 0",
+            "event_name": "filled",
+            "dialog_node": "handler_10_1585751141153",
+            "previous_sibling": "handler_6_1585653554342"
+        },
+        {
+            "type": "event_handler",
+            "output": {
                 "generic": [
                     {
                         "values": [
@@ -2257,9 +2276,28 @@
             "context": {
                 "guests": "@sys-number"
             },
-            "conditions": "@sys-number",
+            "conditions": "@sys-number >= 0",
             "event_name": "input",
             "dialog_node": "handler_2_1585653554342"
+        },
+        {
+            "type": "event_handler",
+            "output": {
+                "text": {
+                    "values": [
+                        "Our last seating is at 9 PM."
+                    ],
+                    "selection_policy": "sequential"
+                }
+            },
+            "parent": "slot_2_1585653512217",
+            "next_step": {
+                "behavior": "reprompt"
+            },
+            "conditions": "@sys-time.after('21:00:00')",
+            "event_name": "filled",
+            "dialog_node": "handler_2_1585750760132",
+            "previous_sibling": "handler_8_1585653512221"
         },
         {
             "type": "event_handler",
@@ -2277,10 +2315,34 @@
             "output": {
                 "text": {
                     "values": [
-                        "What day would you like to come in?"
+                        "You cannot make a reservation for a day in the past."
                     ],
                     "selection_policy": "sequential"
                 }
+            },
+            "parent": "slot_9_1585653481576",
+            "next_step": {
+                "behavior": "reprompt"
+            },
+            "conditions": "@sys-date.before(now())",
+            "event_name": "filled",
+            "dialog_node": "handler_4_1585749888909",
+            "previous_sibling": "handler_5_1585653481591"
+        },
+        {
+            "type": "event_handler",
+            "output": {
+                "generic": [
+                    {
+                        "values": [
+                            {
+                                "text": "What day would you like to come in?"
+                            }
+                        ],
+                        "response_type": "text",
+                        "selection_policy": "sequential"
+                    }
+                ]
             },
             "parent": "slot_9_1585653481576",
             "event_name": "focus",
@@ -2304,6 +2366,22 @@
         },
         {
             "type": "event_handler",
+            "output": {
+                "text": {
+                    "values": [
+                        "Ok. The reservation is for $guests guests"
+                    ],
+                    "selection_policy": "sequential"
+                }
+            },
+            "parent": "slot_9_1585653554338",
+            "conditions": "true",
+            "event_name": "filled",
+            "dialog_node": "handler_6_1585751211826",
+            "previous_sibling": "handler_7_1585751171749"
+        },
+        {
+            "type": "event_handler",
             "output": {},
             "parent": "slot_9_1585653481576",
             "context": {
@@ -2312,6 +2390,22 @@
             "conditions": "@sys-date",
             "event_name": "input",
             "dialog_node": "handler_7_1585653481591"
+        },
+        {
+            "type": "event_handler",
+            "output": {
+                "text": {
+                    "values": [
+                        "Ok, updating the number of guests from <? event.previous_value ?> to <? event.current_value ?>"
+                    ],
+                    "selection_policy": "sequential"
+                }
+            },
+            "parent": "slot_9_1585653554338",
+            "conditions": "(event.previous_value != null) && (event.previous_value != event.current_value)",
+            "event_name": "filled",
+            "dialog_node": "handler_7_1585751171749",
+            "previous_sibling": "handler_10_1585751141153"
         },
         {
             "type": "event_handler",
@@ -2327,6 +2421,57 @@
             "event_name": "focus",
             "dialog_node": "handler_8_1585653512221",
             "previous_sibling": "handler_4_1585653512221"
+        },
+        {
+            "type": "event_handler",
+            "output": {
+                "text": {
+                    "values": [
+                        "Our first seating is at 9 AM"
+                    ],
+                    "selection_policy": "sequential"
+                }
+            },
+            "parent": "slot_2_1585653512217",
+            "next_step": {
+                "behavior": "reprompt"
+            },
+            "conditions": "@sys-time.before('09:00:00')",
+            "event_name": "filled",
+            "dialog_node": "handler_8_1585750838108",
+            "previous_sibling": "handler_2_1585750760132"
+        },
+        {
+            "type": "event_handler",
+            "output": {
+                "text": {
+                    "values": [
+                        "Ok, the reservation is for $time."
+                    ],
+                    "selection_policy": "sequential"
+                }
+            },
+            "parent": "slot_2_1585653512217",
+            "conditions": "true",
+            "event_name": "filled",
+            "dialog_node": "handler_8_1585750893371",
+            "previous_sibling": "handler_8_1585750838108"
+        },
+        {
+            "type": "event_handler",
+            "output": {
+                "text": {
+                    "values": [
+                        "$date it is"
+                    ],
+                    "selection_policy": "sequential"
+                }
+            },
+            "parent": "slot_9_1585653481576",
+            "conditions": "true",
+            "event_name": "filled",
+            "dialog_node": "handler_9_1585749999447",
+            "previous_sibling": "handler_4_1585749888909"
         },
         {
             "type": "standard",
@@ -2878,6 +3023,7 @@
             "output": {},
             "parent": "node_6_1585653414246",
             "variable": "$time",
+            "conditions": "true",
             "dialog_node": "slot_2_1585653512217",
             "previous_sibling": "slot_9_1585653481576"
         },
@@ -2886,13 +3032,16 @@
             "output": {},
             "parent": "node_6_1585653414246",
             "variable": "$date",
+            "conditions": "true",
             "dialog_node": "slot_9_1585653481576",
             "previous_sibling": "handler_1_1585741721532"
         },
         {
             "type": "slot",
+            "output": {},
             "parent": "node_6_1585653414246",
             "variable": "$guests",
+            "conditions": "true",
             "dialog_node": "slot_9_1585653554338",
             "previous_sibling": "slot_2_1585653512217"
         },
