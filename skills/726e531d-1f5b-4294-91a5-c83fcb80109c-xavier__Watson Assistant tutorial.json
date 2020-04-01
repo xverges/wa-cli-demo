@@ -2127,7 +2127,7 @@
             ]
         }
     ],
-    "updated": "2020-03-31T11:22:29.157Z",
+    "updated": "2020-04-01T11:45:23.003Z",
     "entities": [
         {
             "entity": "menu",
@@ -2247,7 +2247,7 @@
             "output": {},
             "parent": "slot_2_1585653512217",
             "context": {
-                "time": "@sys-time"
+                "time": "<? @sys-time.reformatDateTime('h:mm a') ?>"
             },
             "conditions": "@sys-time",
             "event_name": "input",
@@ -2288,7 +2288,7 @@
             "output": {},
             "parent": "slot_9_1585653481576",
             "context": {
-                "date": "@sys-date"
+                "date": "<? @sys-date.reformatDateTime('EEEE, MMMM d') ?>"
             },
             "conditions": "@sys-date",
             "event_name": "input",
@@ -2856,6 +2856,7 @@
         },
         {
             "type": "slot",
+            "output": {},
             "parent": "node_6_1585653414246",
             "variable": "$time",
             "dialog_node": "slot_2_1585653512217",
@@ -2863,6 +2864,7 @@
         },
         {
             "type": "slot",
+            "output": {},
             "parent": "node_6_1585653414246",
             "variable": "$date",
             "dialog_node": "slot_9_1585653481576"
@@ -2913,5 +2915,5 @@
         }
     },
     "learning_opt_out": false,
-    "status": "Training"
+    "status": "Available"
 }

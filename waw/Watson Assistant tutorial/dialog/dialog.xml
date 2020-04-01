@@ -113,11 +113,12 @@
     </output>
     <slots>
       <slot name="slot_9_1585653481576" variable="$date">
+        <output structure="emptyDict"/>
         <handlers>
           <handler name="handler_7_1585653481591" eventName="input">
             <condition>@sys-date</condition>
             <context>
-              <date>@sys-date</date>
+              <date>&lt;? @sys-date.reformatDateTime('EEEE, MMMM d') ?&gt;</date>
             </context>
             <output structure="emptyDict"/>
           </handler>
@@ -132,11 +133,12 @@
         </handlers>
       </slot>
       <slot name="slot_2_1585653512217" variable="$time">
+        <output structure="emptyDict"/>
         <handlers>
           <handler name="handler_4_1585653512221" eventName="input">
             <condition>@sys-time</condition>
             <context>
-              <time>@sys-time</time>
+              <time>&lt;? @sys-time.reformatDateTime('h:mm a') ?&gt;</time>
             </context>
             <output structure="emptyDict"/>
           </handler>
