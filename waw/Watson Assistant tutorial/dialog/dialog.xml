@@ -100,6 +100,77 @@
       </node>
     </nodes>
   </node>
+  <node name="node_6_1585653414246">
+    <condition>#reservation</condition>
+    <output>
+      <generic structure="listItem">
+        <values structure="listItem">
+          <text>OK. I am making you a reservation for $guests on $date at $time.</text>
+        </values>
+        <response_type>text</response_type>
+        <selection_policy>sequential</selection_policy>
+      </generic>
+    </output>
+    <slots>
+      <slot name="slot_9_1585653481576" variable="$date">
+        <handlers>
+          <handler name="handler_7_1585653481591" eventName="input">
+            <condition>@sys-date</condition>
+            <context>
+              <date>@sys-date</date>
+            </context>
+            <output structure="emptyDict"/>
+          </handler>
+          <handler name="handler_5_1585653481591" eventName="focus">
+            <output>
+              <textValues>
+                <values structure="listItem">What day would you like to come in?</values>
+                <selection_policy>sequential</selection_policy>
+              </textValues>
+            </output>
+          </handler>
+        </handlers>
+      </slot>
+      <slot name="slot_2_1585653512217" variable="$time">
+        <handlers>
+          <handler name="handler_4_1585653512221" eventName="input">
+            <condition>@sys-time</condition>
+            <context>
+              <time>@sys-time</time>
+            </context>
+            <output structure="emptyDict"/>
+          </handler>
+          <handler name="handler_8_1585653512221" eventName="focus">
+            <output>
+              <textValues>
+                <values structure="listItem">What time do you want the reservation to be made for?</values>
+                <selection_policy>sequential</selection_policy>
+              </textValues>
+            </output>
+          </handler>
+        </handlers>
+      </slot>
+      <slot name="slot_9_1585653554338" variable="$guests">
+        <handlers>
+          <handler name="handler_2_1585653554342" eventName="input">
+            <condition>@sys-number</condition>
+            <context>
+              <guests>@sys-number</guests>
+            </context>
+            <output structure="emptyDict"/>
+          </handler>
+          <handler name="handler_6_1585653554342" eventName="focus">
+            <output>
+              <textValues>
+                <values structure="listItem">How many people will be dining?</values>
+                <selection_policy>sequential</selection_policy>
+              </textValues>
+            </output>
+          </handler>
+        </handlers>
+      </slot>
+    </slots>
+  </node>
   <node name="node_5_1533668312710">
     <type>standard</type>
     <condition>#about_restaurant</condition>
