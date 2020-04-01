@@ -111,6 +111,19 @@
         <selection_policy>sequential</selection_policy>
       </generic>
     </output>
+    <handlers>
+      <handler name="handler_1_1585741721532" eventName="focus">
+        <output>
+          <generic structure="listItem">
+            <values structure="listItem">
+              <text>I can make a reservation for you. Just tell me the day and time of the reservation, and how many people it is for.</text>
+            </values>
+            <response_type>text</response_type>
+            <selection_policy>sequential</selection_policy>
+          </generic>
+        </output>
+      </handler>
+    </handlers>
     <slots>
       <slot name="slot_9_1585653481576" variable="$date">
         <output structure="emptyDict"/>

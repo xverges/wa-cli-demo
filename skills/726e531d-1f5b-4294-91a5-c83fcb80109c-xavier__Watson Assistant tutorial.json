@@ -2127,7 +2127,7 @@
             ]
         }
     ],
-    "updated": "2020-04-01T11:45:23.003Z",
+    "updated": "2020-04-01T11:48:47.635Z",
     "entities": [
         {
             "entity": "menu",
@@ -2230,6 +2230,25 @@
             "conditions": "anything_else",
             "dialog_node": "Anything else",
             "previous_sibling": "node_2_1533665915866"
+        },
+        {
+            "type": "event_handler",
+            "output": {
+                "generic": [
+                    {
+                        "values": [
+                            {
+                                "text": "I can make a reservation for you. Just tell me the day and time of the reservation, and how many people it is for."
+                            }
+                        ],
+                        "response_type": "text",
+                        "selection_policy": "sequential"
+                    }
+                ]
+            },
+            "parent": "node_6_1585653414246",
+            "event_name": "focus",
+            "dialog_node": "handler_1_1585741721532"
         },
         {
             "type": "event_handler",
@@ -2867,7 +2886,8 @@
             "output": {},
             "parent": "node_6_1585653414246",
             "variable": "$date",
-            "dialog_node": "slot_9_1585653481576"
+            "dialog_node": "slot_9_1585653481576",
+            "previous_sibling": "handler_1_1585741721532"
         },
         {
             "type": "slot",
