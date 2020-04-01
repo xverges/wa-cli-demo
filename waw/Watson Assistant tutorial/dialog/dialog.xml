@@ -160,7 +160,7 @@
             </goto>
           </handler>
           <handler name="handler_9_1585749999447" eventName="filled">
-            <condition>true</condition>
+            <condition>!($time &amp;&amp; $guests)</condition>
             <output>
               <textValues>
                 <values structure="listItem">$date it is</values>
@@ -214,7 +214,7 @@
             </goto>
           </handler>
           <handler name="handler_8_1585750893371" eventName="filled">
-            <condition>true</condition>
+            <condition>!($date &amp;&amp; $guests)</condition>
             <output>
               <textValues>
                 <values structure="listItem">Ok, the reservation is for $time.</values>
@@ -265,10 +265,55 @@
             </output>
           </handler>
           <handler name="handler_6_1585751211826" eventName="filled">
-            <condition>true</condition>
+            <condition>!($date &amp;&amp; $time)</condition>
             <output>
               <textValues>
                 <values structure="listItem">Ok. The reservation is for $guests guests</values>
+                <selection_policy>sequential</selection_policy>
+              </textValues>
+            </output>
+          </handler>
+        </handlers>
+      </slot>
+      <slot name="slot_2_1585754216974" variable="$confirmation">
+        <output structure="emptyDict"/>
+        <handlers>
+          <handler name="handler_5_1585754216983" eventName="input">
+            <condition>(#yes || #no) &amp;&amp; slot_in_focus</condition>
+            <context>
+              <confirmation>(#yes || #no) &amp;&amp; slot_in_focus</confirmation>
+            </context>
+            <output structure="emptyDict"/>
+          </handler>
+          <handler name="handler_4_1585754216983" eventName="focus">
+            <output>
+              <generic structure="listItem">
+                <values structure="listItem">
+                  <text>I'm going to reserve you a table for $guests on $date at $time. Should I go ahead?</text>
+                </values>
+                <response_type>text</response_type>
+                <selection_policy>sequential</selection_policy>
+              </generic>
+            </output>
+          </handler>
+          <handler name="handler_3_1585754390605" eventName="filled">
+            <condition>#no</condition>
+            <context>
+              <date xsi:nil="true"/>
+              <time xsi:nil="true"/>
+              <guests xsi:nil="true"/>
+            </context>
+            <output>
+              <textValues>
+                <values structure="listItem">Alright. Let's start over. I'll try to keep up this time.</values>
+              </textValues>
+            </output>
+          </handler>
+          <handler name="handler_4_1585754533536" eventName="nomatch">
+            <condition>true</condition>
+            <output>
+              <textValues>
+                <values structure="listItem">Respond with Yes to indicate that you want the reservation to be made as-is, or No to indicate that you do not.</values>
                 <selection_policy>sequential</selection_policy>
               </textValues>
             </output>

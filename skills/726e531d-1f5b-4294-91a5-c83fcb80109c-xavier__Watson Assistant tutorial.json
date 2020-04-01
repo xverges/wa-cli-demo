@@ -2168,7 +2168,7 @@
             ]
         }
     ],
-    "updated": "2020-04-01T14:50:43.094Z",
+    "updated": "2020-04-01T15:27:48.804Z",
     "entities": [
         {
             "entity": "menu",
@@ -2342,6 +2342,26 @@
         },
         {
             "type": "event_handler",
+            "output": {
+                "text": {
+                    "values": [
+                        "Alright. Let's start over. I'll try to keep up this time."
+                    ]
+                }
+            },
+            "parent": "slot_2_1585754216974",
+            "context": {
+                "date": null,
+                "time": null,
+                "guests": null
+            },
+            "conditions": "#no",
+            "event_name": "filled",
+            "dialog_node": "handler_3_1585754390605",
+            "previous_sibling": "handler_4_1585754216983"
+        },
+        {
+            "type": "event_handler",
             "output": {},
             "parent": "slot_2_1585653512217",
             "context": {
@@ -2377,6 +2397,42 @@
                     {
                         "values": [
                             {
+                                "text": "I'm going to reserve you a table for $guests on $date at $time. Should I go ahead?"
+                            }
+                        ],
+                        "response_type": "text",
+                        "selection_policy": "sequential"
+                    }
+                ]
+            },
+            "parent": "slot_2_1585754216974",
+            "event_name": "focus",
+            "dialog_node": "handler_4_1585754216983",
+            "previous_sibling": "handler_5_1585754216983"
+        },
+        {
+            "type": "event_handler",
+            "output": {
+                "text": {
+                    "values": [
+                        "Respond with Yes to indicate that you want the reservation to be made as-is, or No to indicate that you do not."
+                    ],
+                    "selection_policy": "sequential"
+                }
+            },
+            "parent": "slot_2_1585754216974",
+            "conditions": "true",
+            "event_name": "nomatch",
+            "dialog_node": "handler_4_1585754533536",
+            "previous_sibling": "handler_3_1585754390605"
+        },
+        {
+            "type": "event_handler",
+            "output": {
+                "generic": [
+                    {
+                        "values": [
+                            {
                                 "text": "What day would you like to come in?"
                             }
                         ],
@@ -2389,6 +2445,17 @@
             "event_name": "focus",
             "dialog_node": "handler_5_1585653481591",
             "previous_sibling": "handler_7_1585653481591"
+        },
+        {
+            "type": "event_handler",
+            "output": {},
+            "parent": "slot_2_1585754216974",
+            "context": {
+                "confirmation": "(#yes || #no) && slot_in_focus"
+            },
+            "conditions": "(#yes || #no) && slot_in_focus",
+            "event_name": "input",
+            "dialog_node": "handler_5_1585754216983"
         },
         {
             "type": "event_handler",
@@ -2416,7 +2483,7 @@
                 }
             },
             "parent": "slot_9_1585653554338",
-            "conditions": "true",
+            "conditions": "!($date && $time)",
             "event_name": "filled",
             "dialog_node": "handler_6_1585751211826",
             "previous_sibling": "handler_7_1585751171749"
@@ -2493,7 +2560,7 @@
                 }
             },
             "parent": "slot_2_1585653512217",
-            "conditions": "true",
+            "conditions": "!($date && $guests)",
             "event_name": "filled",
             "dialog_node": "handler_8_1585750893371",
             "previous_sibling": "handler_8_1585750838108"
@@ -2509,7 +2576,7 @@
                 }
             },
             "parent": "slot_9_1585653481576",
-            "conditions": "true",
+            "conditions": "!($time && $guests)",
             "event_name": "filled",
             "dialog_node": "handler_9_1585749999447",
             "previous_sibling": "handler_4_1585749888909"
@@ -3072,6 +3139,14 @@
             "type": "slot",
             "output": {},
             "parent": "node_6_1585653414246",
+            "variable": "$confirmation",
+            "dialog_node": "slot_2_1585754216974",
+            "previous_sibling": "slot_9_1585653554338"
+        },
+        {
+            "type": "slot",
+            "output": {},
+            "parent": "node_6_1585653414246",
             "variable": "$date",
             "conditions": "true",
             "dialog_node": "slot_9_1585653481576",
@@ -3125,5 +3200,5 @@
         }
     },
     "learning_opt_out": false,
-    "status": "Training"
+    "status": "Available"
 }
