@@ -2066,6 +2066,32 @@
             ]
         },
         {
+            "intent": "no",
+            "examples": [
+                {
+                    "text": " absolutely not."
+                },
+                {
+                    "text": " no"
+                },
+                {
+                    "text": " no thanks."
+                },
+                {
+                    "text": " no way"
+                },
+                {
+                    "text": " please do not!"
+                },
+                {
+                    "text": " please don't."
+                },
+                {
+                    "text": " that's not what i want at all"
+                }
+            ]
+        },
+        {
             "intent": "reservation",
             "examples": [
                 {
@@ -2098,13 +2124,25 @@
                     "text": "correct"
                 },
                 {
+                    "text": "i'd like that"
+                },
+                {
+                    "text": "ok"
+                },
+                {
                     "text": "please do."
                 },
                 {
                     "text": "please do that."
                 },
                 {
+                    "text": "sure"
+                },
+                {
                     "text": "that is correct."
+                },
+                {
+                    "text": "that sounds good."
                 },
                 {
                     "text": "that's right"
@@ -2119,6 +2157,9 @@
                     "text": "yes, i'd like to go ahead with that."
                 },
                 {
+                    "text": "yes please."
+                },
+                {
                     "text": "you've got it right."
                 },
                 {
@@ -2127,7 +2168,7 @@
             ]
         }
     ],
-    "updated": "2020-04-01T14:33:17.511Z",
+    "updated": "2020-04-01T14:50:43.094Z",
     "entities": [
         {
             "entity": "menu",
@@ -3084,5 +3125,5 @@
         }
     },
     "learning_opt_out": false,
-    "status": "Available"
+    "status": "Training"
 }
