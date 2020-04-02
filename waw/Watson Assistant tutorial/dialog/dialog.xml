@@ -122,16 +122,51 @@
     <nodes>
       <node name="node_6_1585653414246">
         <condition>($date == null &amp;&amp; $time == null)</condition>
-        <output>
-          <generic structure="listItem">
-            <values structure="listItem">
-              <text>OK. I am making you a reservation for $guests on $date at $time.</text>
-            </values>
-            <response_type>text</response_type>
-            <selection_policy>sequential</selection_policy>
-          </generic>
-        </output>
+        <metadata>
+          <_customization>
+            <mcr type="boolean">True</mcr>
+          </_customization>
+        </metadata>
+        <nodes>
+          <node name="response_5_1585816752307">
+            <type>response_condition</type>
+            <condition>has_skipped_slots</condition>
+            <output>
+              <generic structure="listItem">
+                <values structure="listItem">
+                  <text>I look forward to helping you with your next reservation. Have a good day.</text>
+                </values>
+                <response_type>text</response_type>
+                <selection_policy>sequential</selection_policy>
+              </generic>
+            </output>
+          </node>
+          <node name="response_1_1585816724326">
+            <type>response_condition</type>
+            <output>
+              <generic structure="listItem">
+                <values structure="listItem">
+                  <text>OK. I am making you a reservation for $guests on $date at $time.</text>
+                </values>
+                <response_type>text</response_type>
+                <selection_policy>sequential</selection_policy>
+              </generic>
+            </output>
+          </node>
+        </nodes>
         <handlers>
+          <handler name="handler_3_1585816560611" eventName="generic">
+            <condition>#exit</condition>
+            <output>
+              <textValues>
+                <values structure="listItem">Ok, we'll stop there. No reservation will be made.</values>
+                <selection_policy>sequential</selection_policy>
+              </textValues>
+            </output>
+            <goto>
+              <behavior>skip_all_slots</behavior>
+            </goto>
+          </handler>
           <handler name="handler_1_1585741721532" eventName="focus">
             <output>
               <generic structure="listItem">
