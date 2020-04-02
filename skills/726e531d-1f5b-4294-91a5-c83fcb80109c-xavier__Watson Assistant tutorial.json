@@ -2069,25 +2069,25 @@
             "intent": "no",
             "examples": [
                 {
-                    "text": " absolutely not."
+                    "text": "absolutely not."
                 },
                 {
-                    "text": " no"
+                    "text": "no"
                 },
                 {
-                    "text": " no thanks."
+                    "text": "no thanks."
                 },
                 {
-                    "text": " no way"
+                    "text": "no way"
                 },
                 {
-                    "text": " please do not!"
+                    "text": "please do not!"
                 },
                 {
-                    "text": " please don't."
+                    "text": "please don't."
                 },
                 {
-                    "text": " that's not what i want at all"
+                    "text": "that's not what i want at all"
                 }
             ]
         },
@@ -2168,7 +2168,7 @@
             ]
         }
     ],
-    "updated": "2020-04-01T15:27:48.804Z",
+    "updated": "2020-04-02T08:23:05.017Z",
     "entities": [
         {
             "entity": "menu",
@@ -2695,6 +2695,30 @@
             "output": {
                 "generic": [
                     {
+                        "values": [],
+                        "response_type": "text",
+                        "selection_policy": "sequential"
+                    }
+                ]
+            },
+            "context": {
+                "date": null,
+                "time": null,
+                "guests": null,
+                "confirmation": null
+            },
+            "next_step": {
+                "behavior": "skip_user_input"
+            },
+            "conditions": "#reservation",
+            "dialog_node": "node_2_1585815654124",
+            "previous_sibling": "node_1_1533665752753"
+        },
+        {
+            "type": "standard",
+            "output": {
+                "generic": [
+                    {
                         "values": [
                             {
                                 "text": "If the pickup time is more than 48 hours from now, you can cancel your order."
@@ -2804,7 +2828,7 @@
             "metadata": {},
             "conditions": "#about_restaurant",
             "dialog_node": "node_5_1533668312710",
-            "previous_sibling": "node_6_1585653414246"
+            "previous_sibling": "node_2_1585815654124"
         },
         {
             "type": "standard",
@@ -2954,9 +2978,9 @@
                     }
                 ]
             },
-            "conditions": "#reservation",
-            "dialog_node": "node_6_1585653414246",
-            "previous_sibling": "node_1_1533665752753"
+            "parent": "node_2_1585815654124",
+            "conditions": "($date == null && $time == null)",
+            "dialog_node": "node_6_1585653414246"
         },
         {
             "type": "standard",

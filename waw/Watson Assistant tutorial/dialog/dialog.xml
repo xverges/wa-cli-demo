@@ -100,227 +100,249 @@
       </node>
     </nodes>
   </node>
-  <node name="node_6_1585653414246">
+  <node name="node_2_1585815654124">
+    <type>standard</type>
     <condition>#reservation</condition>
+    <context>
+      <date xsi:nil="true"/>
+      <time xsi:nil="true"/>
+      <guests xsi:nil="true"/>
+      <confirmation xsi:nil="true"/>
+    </context>
     <output>
       <generic structure="listItem">
-        <values structure="listItem">
-          <text>OK. I am making you a reservation for $guests on $date at $time.</text>
-        </values>
+        <values structure="emptyList"/>
         <response_type>text</response_type>
         <selection_policy>sequential</selection_policy>
       </generic>
     </output>
-    <handlers>
-      <handler name="handler_1_1585741721532" eventName="focus">
+    <goto>
+      <behavior>skip_user_input</behavior>
+    </goto>
+    <nodes>
+      <node name="node_6_1585653414246">
+        <condition>($date == null &amp;&amp; $time == null)</condition>
         <output>
           <generic structure="listItem">
             <values structure="listItem">
-              <text>I can make a reservation for you. Just tell me the day and time of the reservation, and how many people it is for.</text>
+              <text>OK. I am making you a reservation for $guests on $date at $time.</text>
             </values>
             <response_type>text</response_type>
             <selection_policy>sequential</selection_policy>
           </generic>
         </output>
-      </handler>
-    </handlers>
-    <slots>
-      <slot name="slot_9_1585653481576" variable="$date">
-        <condition>true</condition>
-        <output structure="emptyDict"/>
         <handlers>
-          <handler name="handler_7_1585653481591" eventName="input">
-            <condition>@sys-date</condition>
-            <context>
-              <date>&lt;? @sys-date.reformatDateTime('EEEE, MMMM d') ?&gt;</date>
-            </context>
-            <output structure="emptyDict"/>
-          </handler>
-          <handler name="handler_5_1585653481591" eventName="focus">
+          <handler name="handler_1_1585741721532" eventName="focus">
             <output>
               <generic structure="listItem">
                 <values structure="listItem">
-                  <text>What day would you like to come in?</text>
+                  <text>I can make a reservation for you. Just tell me the day and time of the reservation, and how many people it is for.</text>
                 </values>
                 <response_type>text</response_type>
                 <selection_policy>sequential</selection_policy>
               </generic>
             </output>
           </handler>
-          <handler name="handler_4_1585749888909" eventName="filled">
-            <condition>@sys-date.before(now())</condition>
-            <output>
-              <textValues>
-                <values structure="listItem">You cannot make a reservation for a day in the past.</values>
-                <selection_policy>sequential</selection_policy>
-              </textValues>
-            </output>
-            <goto>
-              <behavior>reprompt</behavior>
-            </goto>
-          </handler>
-          <handler name="handler_9_1585749999447" eventName="filled">
-            <condition>!($time &amp;&amp; $guests)</condition>
-            <output>
-              <textValues>
-                <values structure="listItem">$date it is</values>
-                <selection_policy>sequential</selection_policy>
-              </textValues>
-            </output>
-          </handler>
         </handlers>
-      </slot>
-      <slot name="slot_2_1585653512217" variable="$time">
-        <condition>true</condition>
-        <output structure="emptyDict"/>
-        <handlers>
-          <handler name="handler_4_1585653512221" eventName="input">
-            <condition>@sys-time</condition>
-            <context>
-              <time>&lt;? @sys-time.reformatDateTime('h:mm a') ?&gt;</time>
-            </context>
-            <output structure="emptyDict"/>
-          </handler>
-          <handler name="handler_8_1585653512221" eventName="focus">
-            <output>
-              <textValues>
-                <values structure="listItem">What time do you want the reservation to be made for?</values>
-                <selection_policy>sequential</selection_policy>
-              </textValues>
-            </output>
-          </handler>
-          <handler name="handler_2_1585750760132" eventName="filled">
-            <condition>@sys-time.after('21:00:00')</condition>
-            <output>
-              <textValues>
-                <values structure="listItem">Our last seating is at 9 PM.</values>
-                <selection_policy>sequential</selection_policy>
-              </textValues>
-            </output>
-            <goto>
-              <behavior>reprompt</behavior>
-            </goto>
-          </handler>
-          <handler name="handler_8_1585750838108" eventName="filled">
-            <condition>@sys-time.before('09:00:00')</condition>
-            <output>
-              <textValues>
-                <values structure="listItem">Our first seating is at 9 AM</values>
-                <selection_policy>sequential</selection_policy>
-              </textValues>
-            </output>
-            <goto>
-              <behavior>reprompt</behavior>
-            </goto>
-          </handler>
-          <handler name="handler_8_1585750893371" eventName="filled">
-            <condition>!($date &amp;&amp; $guests)</condition>
-            <output>
-              <textValues>
-                <values structure="listItem">Ok, the reservation is for $time.</values>
-                <selection_policy>sequential</selection_policy>
-              </textValues>
-            </output>
-          </handler>
-        </handlers>
-      </slot>
-      <slot name="slot_9_1585653554338" variable="$guests">
-        <condition>true</condition>
-        <output structure="emptyDict"/>
-        <handlers>
-          <handler name="handler_2_1585653554342" eventName="input">
-            <condition>@sys-number &gt;= 0</condition>
-            <context>
-              <guests>@sys-number</guests>
-            </context>
-            <output structure="emptyDict"/>
-          </handler>
-          <handler name="handler_6_1585653554342" eventName="focus">
-            <output>
-              <textValues>
-                <values structure="listItem">How many people will be dining?</values>
-                <selection_policy>sequential</selection_policy>
-              </textValues>
-            </output>
-          </handler>
-          <handler name="handler_10_1585751141153" eventName="filled">
-            <condition>@sys-number == 0</condition>
-            <output>
-              <textValues>
-                <values structure="listItem">Please specify a number that is larger than 0</values>
-                <selection_policy>sequential</selection_policy>
-              </textValues>
-            </output>
-            <goto>
-              <behavior>reprompt</behavior>
-            </goto>
-          </handler>
-          <handler name="handler_7_1585751171749" eventName="filled">
-            <condition>(event.previous_value != null) &amp;&amp; (event.previous_value != event.current_value)</condition>
-            <output>
-              <textValues>
-                <values structure="listItem">Ok, updating the number of guests from &lt;? event.previous_value ?&gt; to &lt;? event.current_value ?&gt;</values>
-                <selection_policy>sequential</selection_policy>
-              </textValues>
-            </output>
-          </handler>
-          <handler name="handler_6_1585751211826" eventName="filled">
-            <condition>!($date &amp;&amp; $time)</condition>
-            <output>
-              <textValues>
-                <values structure="listItem">Ok. The reservation is for $guests guests</values>
-                <selection_policy>sequential</selection_policy>
-              </textValues>
-            </output>
-          </handler>
-        </handlers>
-      </slot>
-      <slot name="slot_2_1585754216974" variable="$confirmation">
-        <output structure="emptyDict"/>
-        <handlers>
-          <handler name="handler_5_1585754216983" eventName="input">
-            <condition>(#yes || #no) &amp;&amp; slot_in_focus</condition>
-            <context>
-              <confirmation>(#yes || #no) &amp;&amp; slot_in_focus</confirmation>
-            </context>
-            <output structure="emptyDict"/>
-          </handler>
-          <handler name="handler_4_1585754216983" eventName="focus">
-            <output>
-              <generic structure="listItem">
-                <values structure="listItem">
-                  <text>I'm going to reserve you a table for $guests on $date at $time. Should I go ahead?</text>
-                </values>
-                <response_type>text</response_type>
-                <selection_policy>sequential</selection_policy>
-              </generic>
-            </output>
-          </handler>
-          <handler name="handler_3_1585754390605" eventName="filled">
-            <condition>#no</condition>
-            <context>
-              <date xsi:nil="true"/>
-              <time xsi:nil="true"/>
-              <guests xsi:nil="true"/>
-            </context>
-            <output>
-              <textValues>
-                <values structure="listItem">Alright. Let's start over. I'll try to keep up this time.</values>
-              </textValues>
-            </output>
-          </handler>
-          <handler name="handler_4_1585754533536" eventName="nomatch">
+        <slots>
+          <slot name="slot_9_1585653481576" variable="$date">
             <condition>true</condition>
-            <output>
-              <textValues>
-                <values structure="listItem">Respond with Yes to indicate that you want the reservation to be made as-is, or No to indicate that you do not.</values>
-                <selection_policy>sequential</selection_policy>
-              </textValues>
-            </output>
-          </handler>
-        </handlers>
-      </slot>
-    </slots>
+            <output structure="emptyDict"/>
+            <handlers>
+              <handler name="handler_7_1585653481591" eventName="input">
+                <condition>@sys-date</condition>
+                <context>
+                  <date>&lt;? @sys-date.reformatDateTime('EEEE, MMMM d') ?&gt;</date>
+                </context>
+                <output structure="emptyDict"/>
+              </handler>
+              <handler name="handler_5_1585653481591" eventName="focus">
+                <output>
+                  <generic structure="listItem">
+                    <values structure="listItem">
+                      <text>What day would you like to come in?</text>
+                    </values>
+                    <response_type>text</response_type>
+                    <selection_policy>sequential</selection_policy>
+                  </generic>
+                </output>
+              </handler>
+              <handler name="handler_4_1585749888909" eventName="filled">
+                <condition>@sys-date.before(now())</condition>
+                <output>
+                  <textValues>
+                    <values structure="listItem">You cannot make a reservation for a day in the past.</values>
+                    <selection_policy>sequential</selection_policy>
+                  </textValues>
+                </output>
+                <goto>
+                  <behavior>reprompt</behavior>
+                </goto>
+              </handler>
+              <handler name="handler_9_1585749999447" eventName="filled">
+                <condition>!($time &amp;&amp; $guests)</condition>
+                <output>
+                  <textValues>
+                    <values structure="listItem">$date it is</values>
+                    <selection_policy>sequential</selection_policy>
+                  </textValues>
+                </output>
+              </handler>
+            </handlers>
+          </slot>
+          <slot name="slot_2_1585653512217" variable="$time">
+            <condition>true</condition>
+            <output structure="emptyDict"/>
+            <handlers>
+              <handler name="handler_4_1585653512221" eventName="input">
+                <condition>@sys-time</condition>
+                <context>
+                  <time>&lt;? @sys-time.reformatDateTime('h:mm a') ?&gt;</time>
+                </context>
+                <output structure="emptyDict"/>
+              </handler>
+              <handler name="handler_8_1585653512221" eventName="focus">
+                <output>
+                  <textValues>
+                    <values structure="listItem">What time do you want the reservation to be made for?</values>
+                    <selection_policy>sequential</selection_policy>
+                  </textValues>
+                </output>
+              </handler>
+              <handler name="handler_2_1585750760132" eventName="filled">
+                <condition>@sys-time.after('21:00:00')</condition>
+                <output>
+                  <textValues>
+                    <values structure="listItem">Our last seating is at 9 PM.</values>
+                    <selection_policy>sequential</selection_policy>
+                  </textValues>
+                </output>
+                <goto>
+                  <behavior>reprompt</behavior>
+                </goto>
+              </handler>
+              <handler name="handler_8_1585750838108" eventName="filled">
+                <condition>@sys-time.before('09:00:00')</condition>
+                <output>
+                  <textValues>
+                    <values structure="listItem">Our first seating is at 9 AM</values>
+                    <selection_policy>sequential</selection_policy>
+                  </textValues>
+                </output>
+                <goto>
+                  <behavior>reprompt</behavior>
+                </goto>
+              </handler>
+              <handler name="handler_8_1585750893371" eventName="filled">
+                <condition>!($date &amp;&amp; $guests)</condition>
+                <output>
+                  <textValues>
+                    <values structure="listItem">Ok, the reservation is for $time.</values>
+                    <selection_policy>sequential</selection_policy>
+                  </textValues>
+                </output>
+              </handler>
+            </handlers>
+          </slot>
+          <slot name="slot_9_1585653554338" variable="$guests">
+            <condition>true</condition>
+            <output structure="emptyDict"/>
+            <handlers>
+              <handler name="handler_2_1585653554342" eventName="input">
+                <condition>@sys-number &gt;= 0</condition>
+                <context>
+                  <guests>@sys-number</guests>
+                </context>
+                <output structure="emptyDict"/>
+              </handler>
+              <handler name="handler_6_1585653554342" eventName="focus">
+                <output>
+                  <textValues>
+                    <values structure="listItem">How many people will be dining?</values>
+                    <selection_policy>sequential</selection_policy>
+                  </textValues>
+                </output>
+              </handler>
+              <handler name="handler_10_1585751141153" eventName="filled">
+                <condition>@sys-number == 0</condition>
+                <output>
+                  <textValues>
+                    <values structure="listItem">Please specify a number that is larger than 0</values>
+                    <selection_policy>sequential</selection_policy>
+                  </textValues>
+                </output>
+                <goto>
+                  <behavior>reprompt</behavior>
+                </goto>
+              </handler>
+              <handler name="handler_7_1585751171749" eventName="filled">
+                <condition>(event.previous_value != null) &amp;&amp; (event.previous_value != event.current_value)</condition>
+                <output>
+                  <textValues>
+                    <values structure="listItem">Ok, updating the number of guests from &lt;? event.previous_value ?&gt; to &lt;? event.current_value ?&gt;</values>
+                    <selection_policy>sequential</selection_policy>
+                  </textValues>
+                </output>
+              </handler>
+              <handler name="handler_6_1585751211826" eventName="filled">
+                <condition>!($date &amp;&amp; $time)</condition>
+                <output>
+                  <textValues>
+                    <values structure="listItem">Ok. The reservation is for $guests guests</values>
+                    <selection_policy>sequential</selection_policy>
+                  </textValues>
+                </output>
+              </handler>
+            </handlers>
+          </slot>
+          <slot name="slot_2_1585754216974" variable="$confirmation">
+            <output structure="emptyDict"/>
+            <handlers>
+              <handler name="handler_5_1585754216983" eventName="input">
+                <condition>(#yes || #no) &amp;&amp; slot_in_focus</condition>
+                <context>
+                  <confirmation>(#yes || #no) &amp;&amp; slot_in_focus</confirmation>
+                </context>
+                <output structure="emptyDict"/>
+              </handler>
+              <handler name="handler_4_1585754216983" eventName="focus">
+                <output>
+                  <generic structure="listItem">
+                    <values structure="listItem">
+                      <text>I'm going to reserve you a table for $guests on $date at $time. Should I go ahead?</text>
+                    </values>
+                    <response_type>text</response_type>
+                    <selection_policy>sequential</selection_policy>
+                  </generic>
+                </output>
+              </handler>
+              <handler name="handler_3_1585754390605" eventName="filled">
+                <condition>#no</condition>
+                <context>
+                  <date xsi:nil="true"/>
+                  <time xsi:nil="true"/>
+                  <guests xsi:nil="true"/>
+                </context>
+                <output>
+                  <textValues>
+                    <values structure="listItem">Alright. Let's start over. I'll try to keep up this time.</values>
+                  </textValues>
+                </output>
+              </handler>
+              <handler name="handler_4_1585754533536" eventName="nomatch">
+                <condition>true</condition>
+                <output>
+                  <textValues>
+                    <values structure="listItem">Respond with Yes to indicate that you want the reservation to be made as-is, or No to indicate that you do not.</values>
+                    <selection_policy>sequential</selection_policy>
+                  </textValues>
+                </output>
+              </handler>
+            </handlers>
+          </slot>
+        </slots>
+      </node>
+    </nodes>
   </node>
   <node name="node_5_1533668312710">
     <type>standard</type>
