@@ -114,3 +114,44 @@ $ git pull
 $ wa-cli sandbox deploy "Watson Assistant tutorial"
 ```
 
+### Recycle your sandbox
+
+```
+$ git checkout xavier
+$ git reset --hard master
+$ wa-cli sandbox push "Watson Assistant tutorial"
+```
+
+Now I can keep working in my sandbox until the next PR,
+following this loop
+
+* `wa-cli push`
+* Watson Assistant GUI work
+* `wa-cli pull`
+* `git diff` + `git add` + `git commit`
+* back to top
+
+
+### Review code changes
+
+This is a [PR](https://github.com/xverges/wa-cli-demo/pull/2)
+after following [Tutorial: Improving a node with
+slots](https://cloud.ibm.com/docs/assistant?topic=assistant-tutorial-slots-complex) 
+If code inspection looks too complex (and it could be the case here because
+there are too many changes), the reviewer can deploy the code in
+her own sandbox, the `xavier__Watson Assistant tutorial` skill:
+
+```
+$ git checkout origin/xavier
+$ git checkout -b reviewer
+$ wa-cli sandbox push "Watson Assistant tutorial"
+```
+
+### Delete a sandbox
+
+Once the reviewer is happy, she can delete her sandbox:
+
+```
+$ wa-cli sandbox delete "Watson Assistant tutorial"
+$ git branch -D reviewer
+```
