@@ -1,5 +1,33 @@
+# A programmer-friendly workflow for Watson Assistant skills
 
-### Initialise the project.
+## Summary
+
+This project shows how you can use [`wa-cli`](https://github.com/xverges/wa-cli) to
+create Watson Assistant sandboxes. A `wa-cli` sandbox is a clone of a skill intended
+to make changes easier to be peer-reviewed and tracked in git.
+
+These are the steps that you have to follow:
+
+* Initialize the project: run `wa-cli init` on a git-tracked project
+* Enable the use use of sandboxes for a skill: `wa-cli sandbox init <skill name>`
+* Create your own sandbox: run `wa-cli sandbox push <skill name>`. This will
+  create a skill names `<branch name>__<skill name>`
+* Work on your own sandbox tracking your changes in git. Loop through these steps:
+  * work with the Watson Assistant UI
+  * `wa-cli sandbox pull <skill name>`
+  * `git diff` + `git add` + `git commit`
+  * `wa-cli sandbox push <skill name>`
+* Your team mates can review your changes if you submit a PR, or can create a
+  sandbox of their own with with your git branch. The PR will show changes in a
+  diff-friendly format created by [Watson Assistant
+  Workbench](https://github.com/IBM/watson-assistant-workbench)
+* Merge your changes to `master` and deploy them with `wa-cli sandbox deploy <skill name>`
+
+## Details
+
+This describes what I did to create this project.
+
+### Initialize the project
 
 ```
 $ git init
@@ -15,13 +43,13 @@ $ touch README.md
 $ git add .
 $ git status
 ...
-	new file:   .gitignore
-	new file:   .wa-cli/main_branch.txt
-	new file:   README.md
+    new file:   .gitignore
+    new file:   .wa-cli/main_branch.txt
+    new file:   README.md
 $ git commit -m "Initial commit"
 ```
 
-### Get a skill from a public repo and deploy it.
+### Get a skill from a public repo and deploy it
 
 ```
 $ wget -P skills https://raw.githubusercontent.com/watson-developer-cloud/community/master/watson-assistant/complex_dialog_tutorial.json
@@ -31,26 +59,25 @@ $ wa-cli skills list
 2020-03-19T15:48:04.359Z   f8bc1ed2-7dfa-4f4e-b519-3203947703b1   Watson Assistant tutorial
 ```
 
-### Enable the use of sanboxes for that skill, and commit the decomposed skill.
+### Enable the use of sandboxes for that skill, and commit the decomposed skill
 
 ```
 $ wa-cli sandbox init "Watson Assistant tutorial"
 $ git add .
 $ git status
 ...
-	new file:   waw/Watson Assistant tutorial/counterexamples/IRRELEVANT.csv
-	new file:   waw/Watson Assistant tutorial/dialog/dialog.xml
-	new file:   waw/Watson Assistant tutorial/entities/menu.csv
+    new file:   waw/Watson Assistant tutorial/counterexamples/IRRELEVANT.csv
+    new file:   waw/Watson Assistant tutorial/dialog/dialog.xml
+    new file:   waw/Watson Assistant tutorial/entities/menu.csv
 ...
-	new file:   waw/Watson Assistant tutorial/intents/Customer_Care_Appointments.csv
-	new file:   waw/Watson Assistant tutorial/intents/Customer_Care_Authorized_User.csv
+    new file:   waw/Watson Assistant tutorial/intents/Customer_Care_Appointments.csv
+    new file:   waw/Watson Assistant tutorial/intents/Customer_Care_Authorized_User.csv
 ...
-	new file:   waw/Watson Assistant tutorial/meta.json
+    new file:   waw/Watson Assistant tutorial/meta.json
 $ git commit -m "Decomposed Watson Assistant tutorial"
 ```
 
-
-### Create a sandbox and work with it.
+### Create a sandbox and work with it
 
 ```
 $ git checkout -b xavier
@@ -70,18 +97,16 @@ $ git add .
 $ git commit -m "Track the sandbox JSON just for comparison purposes"
 ```
 
-
 In the Watson Assistant UI, there is now a new skill, named
 `xavier__Watson Assistant tutorial`.
 
 ![2 skills in the UI](doc/two-skills-ui.png)
 
-
 I started following [Tutorial: Adding a node with
 slots to a dialog](https://cloud.ibm.com/docs/assistant?topic=assistant-tutorial-slots).
 When it required to create a `#reservation` intent, rather than using the UI and adding
 the intents example one by one, I created
-`waw/Watson Assistant tutorial/intents/reservation.csv` and then executed again 
+`waw/Watson Assistant tutorial/intents/reservation.csv` and then executed again
 `wa-cli sandbox push "Watson Assistant tutorial"`. At any point while working
 with the UI, I can create a snapshot by running `wa-cli sandbox pull`. I can restore
 that snapshot with `wa-cli sandbox push`
@@ -91,10 +116,10 @@ $ wa-cli sandbox pull
 $ git add .
 $ git status
 ...
-	modified:   waw/Watson Assistant tutorial/dialog/dialog.xml
-	modified:   waw/Watson Assistant tutorial/entities/system_entities.csv
-	new file:   waw/Watson Assistant tutorial/intents/reservation.csv
-	modified:   waw/Watson Assistant tutorial/meta.json
+    modified:   waw/Watson Assistant tutorial/dialog/dialog.xml
+    modified:   waw/Watson Assistant tutorial/entities/system_entities.csv
+    new file:   waw/Watson Assistant tutorial/intents/reservation.csv
+    modified:   waw/Watson Assistant tutorial/meta.json
 $ git commit -m "Completed first slots tutorial"
 $ git push --set-upstream origin xavier
 ```
@@ -131,12 +156,11 @@ following this loop
 * `git diff` + `git add` + `git commit`
 * back to top
 
-
 ### Review code changes
 
 This is a [PR](https://github.com/xverges/wa-cli-demo/pull/2)
 after following [Tutorial: Improving a node with
-slots](https://cloud.ibm.com/docs/assistant?topic=assistant-tutorial-slots-complex) 
+slots](https://cloud.ibm.com/docs/assistant?topic=assistant-tutorial-slots-complex).
 If code inspection looks too complex (and it could be the case here because
 there are too many changes), the reviewer can deploy the code in
 her own sandbox, the `xavier__Watson Assistant tutorial` skill:
