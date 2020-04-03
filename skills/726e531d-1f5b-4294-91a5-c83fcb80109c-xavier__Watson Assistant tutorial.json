@@ -2194,7 +2194,7 @@
             ]
         }
     ],
-    "updated": "2020-04-02T08:40:26.886Z",
+    "updated": "2020-04-02T10:16:45.332Z",
     "entities": [
         {
             "entity": "menu",
@@ -2339,6 +2339,25 @@
         },
         {
             "type": "event_handler",
+            "output": {
+                "text": {
+                    "values": [
+                        "You seem to be having trouble choosing a time. I will make the reservation at 8PM for you."
+                    ],
+                    "selection_policy": "sequential"
+                }
+            },
+            "parent": "slot_2_1585653512217",
+            "context": {
+                "time": "<? '20:00:00'.reformatDateTime('h:mm a') ?>"
+            },
+            "conditions": "$counter > 2",
+            "event_name": "nomatch",
+            "dialog_node": "handler_1_1585822344131",
+            "previous_sibling": "handler_8_1585750893371"
+        },
+        {
+            "type": "event_handler",
             "output": {},
             "parent": "slot_9_1585653554338",
             "context": {
@@ -2366,6 +2385,24 @@
             "event_name": "filled",
             "dialog_node": "handler_2_1585750760132",
             "previous_sibling": "handler_8_1585653512221"
+        },
+        {
+            "type": "event_handler",
+            "output": {
+                "text": {
+                    "values": [
+                        "Please specify the time that you want to eat. The restaurant seats people between 9AM and 9PM."
+                    ]
+                }
+            },
+            "parent": "slot_2_1585653512217",
+            "context": {
+                "counter": "<? context['counter'] + 1 ?>"
+            },
+            "conditions": "true",
+            "event_name": "nomatch",
+            "dialog_node": "handler_2_1585822214053",
+            "previous_sibling": "handler_1_1585822344131"
         },
         {
             "type": "event_handler",
@@ -2751,6 +2788,7 @@
                 "date": null,
                 "time": null,
                 "guests": null,
+                "counter": 0,
                 "confirmation": null
             },
             "next_step": {

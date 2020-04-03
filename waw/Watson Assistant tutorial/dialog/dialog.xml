@@ -107,6 +107,7 @@
       <date xsi:nil="true"/>
       <time xsi:nil="true"/>
       <guests xsi:nil="true"/>
+      <counter type="number">0</counter>
       <confirmation xsi:nil="true"/>
     </context>
     <output>
@@ -274,6 +275,29 @@
                   <textValues>
                     <values structure="listItem">Ok, the reservation is for $time.</values>
                     <selection_policy>sequential</selection_policy>
+                  </textValues>
+                </output>
+              </handler>
+              <handler name="handler_1_1585822344131" eventName="nomatch">
+                <condition>$counter &gt; 2</condition>
+                <context>
+                  <time>&lt;? '20:00:00'.reformatDateTime('h:mm a') ?&gt;</time>
+                </context>
+                <output>
+                  <textValues>
+                    <values structure="listItem">You seem to be having trouble choosing a time. I will make the reservation at 8PM for you.</values>
+                    <selection_policy>sequential</selection_policy>
+                  </textValues>
+                </output>
+              </handler>
+              <handler name="handler_2_1585822214053" eventName="nomatch">
+                <condition>true</condition>
+                <context>
+                  <counter>&lt;? context['counter'] + 1 ?&gt;</counter>
+                </context>
+                <output>
+                  <textValues>
+                    <values structure="listItem">Please specify the time that you want to eat. The restaurant seats people between 9AM and 9PM.</values>
                   </textValues>
                 </output>
               </handler>
