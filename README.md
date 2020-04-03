@@ -3,25 +3,26 @@
 ## Summary
 
 This project shows how you can use [`wa-cli`](https://github.com/xverges/wa-cli) to
-create Watson Assistant sandboxes. A `wa-cli` sandbox is a clone of a skill intended
-to make changes easier to be peer-reviewed and tracked in git.
+create Watson Assistant _sandboxes_. A `wa-cli` sandbox is a clone of a skill that
+is intended to enable a developer to better track changes and to have them
+peer-reviewed.
 
 These are the steps that you have to follow:
 
 * Initialize the project: run `wa-cli init` on a git-tracked project
-* Enable the use use of sandboxes for a skill: `wa-cli sandbox init <skill name>`
-* Create your own sandbox: run `wa-cli sandbox push <skill name>`. This will
-  create a skill names `<branch name>__<skill name>`
+* Enable the use use of sandboxes for a skill: `wa-cli sandbox init <skill_name>`
+* Create your own sandbox: run `wa-cli sandbox push <skill_name>`.  
+  This will create a skill_named `<branch_name>__<skill_name>`
 * Work on your own sandbox tracking your changes in git. Loop through these steps:
   * work with the Watson Assistant UI
-  * `wa-cli sandbox pull <skill name>`
+  * `wa-cli sandbox pull <skill_name>` (from WA to your laptop)
   * `git diff` + `git add` + `git commit`
-  * `wa-cli sandbox push <skill name>`
-* Your team mates can review your changes if you submit a PR, or can create a
-  sandbox of their own with with your git branch. The PR will show changes in a
-  diff-friendly format created by [Watson Assistant
-  Workbench](https://github.com/IBM/watson-assistant-workbench)
-* Merge your changes to `master` and deploy them with `wa-cli sandbox deploy <skill name>`
+  * `wa-cli sandbox push <skill_name>` (from your laptop to WA)
+* Your team mates can review your changes if you submit a PR, or they can create a
+  sandbox of their own using the code in your git branch. The PR will show changes in a
+  [diff-friendly format](https://github.com/xverges/wa-cli-demo/pull/1/files#diff-ca48ca00d4b4567e58414f4bfc230146)
+  created by [Watson Assistant Workbench](https://github.com/IBM/watson-assistant-workbench)
+* Merge your changes to `master` and deploy them with `wa-cli sandbox deploy <skill_name>`
 
 ## Details
 
