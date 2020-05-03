@@ -4,6 +4,9 @@ cache: pip
 python:
   - 3.8
 
+if:
+  type != "pull_request"
+
 env:
   global:
     # **Customize your credentials and wether skills have to be deployed when building to the main branch**
@@ -17,17 +20,17 @@ install:
   # **Customize the skills that you want to deploy and test**
   - echo "Watson Assistant tutorial" >> skills_to_test.txt
   - pip install https://github.com/xverges/wa-cli/archive/master.zip
-  - git branch
   - echo TRAVIS_BRANCH="$TRAVIS_BRANCH" 
   - echo TRAVIS_PULL_REQUEST_BRANCH="$TRAVIS_PULL_REQUEST_BRANCH" 
   - echo TRAVIS_PULL_REQUEST="$TRAVIS_PULL_REQUEST" 
   - wa-cli init --no-prompt --main-branch "$MAIN_BRANCH"
   - |
+    cat skills_to_test.txt
     while read -r skill; do
-        if [ "$TRAVIS_BRANCH" = "$MAIN_BRANCH" && "$DEPLOY_MAIN_BRANCH" != TRUE ]; then
+        if [ "$TRAVIS_BRANCH" = "$MAIN_BRANCH" && "$DEPLOY_MAIN_BRANCH" != TRUE ] ; then
             echo "Skipping deployment to main branch $MAIN_BRANCH";
         else
-            echo "About to push sandbox";
+            echo "About to push sandbox $skill";
             wa-cli sandbox push "$skill" || travis_terminate 1;
         fi;
     done < skills_to_test.txt
