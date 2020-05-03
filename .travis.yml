@@ -18,15 +18,18 @@ install:
   - echo "Watson Assistant tutorial" >> skills_to_test.txt
   - pip install https://github.com/xverges/wa-cli/archive/master.zip
   - git branch
+  - echo TRAVIS_BRANCH="$TRAVIS_BRANCH" 
+  - echo TRAVIS_PULL_REQUEST_BRANCH="$TRAVIS_PULL_REQUEST_BRANCH" 
+  - echo TRAVIS_PULL_REQUEST="$TRAVIS_PULL_REQUEST" 
   - wa-cli init --no-prompt --main-branch "$MAIN_BRANCH"
   - |
     while read -r skill; do
         if [ "$TRAVIS_BRANCH" = "$MAIN_BRANCH" && "$DEPLOY_MAIN_BRANCH" != TRUE ]; then
-            echo "Skipping deployment to main branch $MAIN_BRANCH"
+            echo "Skipping deployment to main branch $MAIN_BRANCH";
         else
-            echo "About to push sandbox"
+            echo "About to push sandbox";
             wa-cli sandbox push "$skill" || travis_terminate 1;
-        fi
+        fi;
     done < skills_to_test.txt
     echo "Out of while loop 1"
 
@@ -34,7 +37,7 @@ install:
 script:
   - |
     while read -r skill; do
-        echo "About to run tests"
+        echo "About to run tests";
         wa-cli sandbox test flow "$skill" || travis_terminate 1;
     done < skills_to_test.txt 
     echo "Out of while loop 1"
