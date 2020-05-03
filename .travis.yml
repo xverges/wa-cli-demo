@@ -1,0 +1,39 @@
+group: travis_latest
+language: python
+cache: pip
+python:
+  - 3.8
+
+env:
+  global:
+    # **Customize your credentials and wether skills have to be deployed when building to the main branch**
+    - MAIN_BRANCH=master
+    - DEPLOY_MAIN_BRANCH=TRUE
+    - WA_URL=https://api.us-south.assistant.watson.cloud.ibm.com
+    # WA_APIKEY needs to be defined. Use the reppo settings or an encrypted variable
+
+
+install:
+  # **Customize the skills that you want to deploy and test**
+  - echo "Watson Assistant tutorial" >> skills_to_test.txt
+  - pip install pip install https://github.com/xverges/wa-cli/archive/master.zip
+  - wa-cli init --no-prompt --main-branch "$MAIN_BRANCH"
+  - |
+    while read -r skill; do
+        if [ "$TRAVIS_BRANCH" = "$MAIN_BRANCH" && "$DEPLOY_MAIN_BRANCH" != TRUE ]; then
+            echo "Skipping deployment to main branch $MAIN_BRANCH"
+        else
+            wa-cli sandbox push "$skill" || travis_terminate 1;
+        fi
+    done < skills_to_test.txt 
+
+
+script:
+  - |
+    while read -r skill; do
+        if [ "$TRAVIS_BRANCH" = "$MAIN_BRANCH" && "$DEPLOY_MAIN_BRANCH" != TRUE ]; then
+            echo "Skipping deployment to main branch $MAIN_BRANCH"
+        else
+            wa-cli sandbox test flow "$skill" || travis_terminate 1;
+        fi
+    done < skills_to_test.txt 

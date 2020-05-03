@@ -1,0 +1,5 @@
+	User Input	Match Output	Match Intent	Match Entity	Alternate Intents	Intents Object	Entities Object	Context Variables	System Object
+1	What is your phone number?	You can call us during business hours at	Customer_Care_Contact_Us						
+2	I want to make a reservation at 18:00 for six	What day would you like to come in	reservation						
+3	NEWCONVERSATION
+4	I want to make a reservation at 19:00 for six	the reservation is for 7:00 PM	reservation						
