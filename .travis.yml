@@ -4,8 +4,8 @@ cache: pip
 python:
   - 3.8
 
-if:
-  type != "pull_request"
+#if:
+#  type != "pull_request"
 
 env:
   global:
@@ -24,25 +24,28 @@ install:
   - echo TRAVIS_PULL_REQUEST_BRANCH="$TRAVIS_PULL_REQUEST_BRANCH" 
   - echo TRAVIS_PULL_REQUEST="$TRAVIS_PULL_REQUEST" 
   - wa-cli init --no-prompt --main-branch "$MAIN_BRANCH"
-  - cat skills_to_test.txt
-  - git ls-tree master:waw || true
-  - git ls-tree origin/master:waw || true
   - |
-    while read -r skill; do
-        if [[ "$TRAVIS_BRANCH" = "$MAIN_BRANCH" && "$DEPLOY_MAIN_BRANCH" != TRUE ]]; then
+    echo "Deploying skills..." && while read -r skill; do
+        if [[ "$TRAVIS_BRANCH" = "$MAIN_BRANCH" && "$DEPLOY_MAIN_BRANCH" != TRUE &&  -z "${TRAVIS_PULL_REQUEST_BRANCH} ]]; then
             echo "Skipping deployment to main branch $MAIN_BRANCH";
         else
-            echo "About to push sandbox $skill";
             wa-cli sandbox push "$skill" || travis_terminate 1;
         fi;
     done < skills_to_test.txt
-    echo "Out of while loop 1"
 
 
 script:
   - |
-    while read -r skill; do
+    echo "Launching tests..." && while read -r skill; do
         echo "About to run tests";
         wa-cli sandbox test flow "$skill" || travis_terminate 1;
     done < skills_to_test.txt 
-    echo "Out of while loop 1"
+
+after_script:
+  - |
+    if [[ -z "${TRAVIS_PULL_REQUEST_BRANCH}" ]]; then
+        echo "Deleting the PR sandboxes..."
+         while read -r skill; do
+            wa-cli sandbox delete "$skill";
+        done < skills_to_test.txt
+    fi
