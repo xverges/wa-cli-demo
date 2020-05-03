@@ -25,6 +25,8 @@ install:
   - echo TRAVIS_PULL_REQUEST="$TRAVIS_PULL_REQUEST" 
   - wa-cli init --no-prompt --main-branch "$MAIN_BRANCH"
   - cat skills_to_test.txt
+  - git ls-tree master:waw || true
+  - git ls-tree origin/master:waw || true
   - |
     while read -r skill; do
         if [[ "$TRAVIS_BRANCH" = "$MAIN_BRANCH" && "$DEPLOY_MAIN_BRANCH" != TRUE ]]; then
