@@ -16,7 +16,7 @@ env:
 install:
   # **Customize the skills that you want to deploy and test**
   - echo "Watson Assistant tutorial" >> skills_to_test.txt
-  - pip install pip install https://github.com/xverges/wa-cli/archive/master.zip
+  - pip install https://github.com/xverges/wa-cli/archive/master.zip
   - wa-cli init --no-prompt --main-branch "$MAIN_BRANCH"
   - |
     while read -r skill; do
