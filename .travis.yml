@@ -26,7 +26,7 @@ install:
   - wa-cli init --no-prompt --main-branch "$MAIN_BRANCH"
   - |
     echo "Deploying skills..." && while read -r skill; do
-        if [[ "$TRAVIS_BRANCH" = "$MAIN_BRANCH" && "$DEPLOY_MAIN_BRANCH" != TRUE &&  -z "${TRAVIS_PULL_REQUEST_BRANCH} ]]; then
+        if [[ "$TRAVIS_BRANCH" = "$MAIN_BRANCH" && "$DEPLOY_MAIN_BRANCH" != TRUE &&  -z "${TRAVIS_PULL_REQUEST_BRANCH}" ]]; then
             echo "Skipping deployment to main branch $MAIN_BRANCH";
         else
             wa-cli sandbox push "$skill" || travis_terminate 1;
