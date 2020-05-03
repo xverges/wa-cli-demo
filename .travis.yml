@@ -24,10 +24,10 @@ install:
   - echo TRAVIS_PULL_REQUEST_BRANCH="$TRAVIS_PULL_REQUEST_BRANCH" 
   - echo TRAVIS_PULL_REQUEST="$TRAVIS_PULL_REQUEST" 
   - wa-cli init --no-prompt --main-branch "$MAIN_BRANCH"
+  - cat skills_to_test.txt
   - |
-    cat skills_to_test.txt
     while read -r skill; do
-        if [ "$TRAVIS_BRANCH" = "$MAIN_BRANCH" && "$DEPLOY_MAIN_BRANCH" != TRUE ] ; then
+        if [[ "$TRAVIS_BRANCH" = "$MAIN_BRANCH" && "$DEPLOY_MAIN_BRANCH" != TRUE ]]; then
             echo "Skipping deployment to main branch $MAIN_BRANCH";
         else
             echo "About to push sandbox $skill";
