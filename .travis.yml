@@ -12,6 +12,7 @@ env:
     # **Customize your credentials and wether skills have to be deployed when building to the main branch**
     - MAIN_BRANCH=master
     - DEPLOY_MAIN_BRANCH=TRUE
+    - TRAINING_TIMEOUT_IN_SECONDS = 180
     - WA_URL=https://api.us-south.assistant.watson.cloud.ibm.com
     # WA_APIKEY needs to be defined. Use the reppo settings or an encrypted variable
 
@@ -32,6 +33,9 @@ install:
             echo "Deploying to sandbox '$SANDBOX_NAME'"
             wa-cli sandbox push "$skill" || exit 1
         fi;
+    done < skills_to_test.txt
+    while read -r skill; do
+        wa-cli sandbox wait-for-ready --timeout "$TRAINING_TIMEOUT_IN_SECONDS" "$skill" || exit 1
     done < skills_to_test.txt
 
 
