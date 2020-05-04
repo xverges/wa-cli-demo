@@ -30,7 +30,7 @@ install:
             echo "Skipping deployment of '$skill' to main branch '$MAIN_BRANCH'"
         else
             echo "Deploying to sandbox '$SANDBOX_NAME'"
-            wa-cli sandbox push "$skill" || return 1
+            wa-cli sandbox push "$skill" || exit 1
         fi;
     done < skills_to_test.txt
 
