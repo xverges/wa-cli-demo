@@ -30,7 +30,7 @@ install:
             echo "Skipping deployment of '$skill' to main branch '$MAIN_BRANCH'";
         else
             echo "Deploying to sandbox '$SANDBOX_NAME'";
-            wa-cli sandbox push "$skill" || travis_terminate 1;
+            wa-cli sandbox push "$skill" || return 1;
         fi;
     done < skills_to_test.txt
 
@@ -39,8 +39,8 @@ script:
   - |
     echo "Launching tests...";
     while read -r skill; do
-        echo "About to run tests";
-        wa-cli sandbox test flow "$skill" || travis_terminate 1;
+        echo "Running test on skill '$SANDBOX_NAME'...";
+        wa-cli sandbox test flow "$skill" || return 1;
     done < skills_to_test.txt 
 
 after_script:
