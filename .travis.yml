@@ -26,11 +26,11 @@ install:
   - wa-cli init --no-prompt --main-branch "$MAIN_BRANCH"
   - |
     echo "Deploying skills..." && while read -r skill; do
-        sandbox_name =  $(wa-cli sandbox name "$skill");
-        if [[ $sandbox_name = "$skill" && "$DEPLOY_MAIN_BRANCH" != TRUE ]]; then
+        export SANDBOX_NAME=$(wa-cli sandbox name "$skill");
+        if [[ $SANDBOX_NAME = "$skill" && "$DEPLOY_MAIN_BRANCH" != TRUE ]]; then
             echo "Skipping deployment of '$skill' to main branch '$MAIN_BRANCH'";
         else
-            echo "Deploying to sandbox '$sandbox_name'";
+            echo "Deploying to sandbox '$SANDBOX_NAME'";
             wa-cli sandbox push "$skill" || travis_terminate 1;
         fi;
     done < skills_to_test.txt
