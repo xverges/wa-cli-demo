@@ -23,34 +23,34 @@ install:
   - wa-cli init --no-prompt --main-branch "$MAIN_BRANCH"
   - echo TRAVIS_BRANCH="$TRAVIS_BRANCH" && echo TRAVIS_PULL_REQUEST_BRANCH="$TRAVIS_PULL_REQUEST_BRANCH" && echo TRAVIS_PULL_REQUEST="$TRAVIS_PULL_REQUEST"
   - |
-    echo "Deploying skills...";
+    echo "Deploying skills..."
     while read -r skill; do
-        export SANDBOX_NAME=$(wa-cli sandbox name "$skill");
+        export SANDBOX_NAME=$(wa-cli sandbox name "$skill")
         if [[ $SANDBOX_NAME = "$skill" && "$DEPLOY_MAIN_BRANCH" != TRUE ]]; then
-            echo "Skipping deployment of '$skill' to main branch '$MAIN_BRANCH'";
+            echo "Skipping deployment of '$skill' to main branch '$MAIN_BRANCH'"
         else
-            echo "Deploying to sandbox '$SANDBOX_NAME'";
-            wa-cli sandbox push "$skill" || return 1;
+            echo "Deploying to sandbox '$SANDBOX_NAME'"
+            wa-cli sandbox push "$skill" || return 1
         fi;
     done < skills_to_test.txt
 
 
 script:
   - |
-    echo "Launching tests...";
+    echo "Launching tests..."
     while read -r skill; do
-        echo "Running test on skill '$SANDBOX_NAME'...";
-        wa-cli sandbox test flow "$skill" || return 1;
+        echo "Running test on skill '$SANDBOX_NAME'..."
+        wa-cli sandbox test flow "$skill" || return 1
     done < skills_to_test.txt 
 
 after_script:
   - |
     echo "Cleaning up..."
     if [[ -n "${TRAVIS_PULL_REQUEST_BRANCH}" ]]; then
-        echo "Deleting the PR sandboxes...";
+        echo "Deleting the PR sandboxes..."
         while read -r skill; do
-            wa-cli sandbox delete "$skill";
+            wa-cli sandbox delete "$skill"
         done < skills_to_test.txt
     else
-        echo "No ad-hoc PR skills where created for this build";
+        echo "No ad-hoc PR skills where created for this build"
     fi
