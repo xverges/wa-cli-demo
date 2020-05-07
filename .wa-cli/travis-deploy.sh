@@ -8,6 +8,11 @@
 #   WA_APIKEY
 #
 
+pwd
+ls -latr
+echo 1 && cat main_branch.txt || true
+echo 2 && cat wa-cli/main_branch.txt || true
+
 MAIN_BRANCH=$(cat ./wa-cli/main_branch.txt)
 wa-cli init --no-prompt --main-branch "${MAIN_BRANCH}"
 echo TRAVIS_BRANCH="$TRAVIS_BRANCH"
