@@ -1,0 +1,4 @@
+"menu","standard","bill of fare","carte du jour","cuisine","standard menu"
+"menu","cake","bakery offerings","cake shop","cake shop menu","dessert menu"
+"menu","vegetarian","meatless","meatless diet","plants-only","vegan","vegan diet","vegetarian menu"
+"order_number","order_syntax","/[A-Z]{2}\d{5}/"

@@ -2194,7 +2194,7 @@
             ]
         }
     ],
-    "updated": "2020-04-02T10:16:45.332Z",
+    "updated": "2020-04-08T16:45:16.330Z",
     "entities": [
         {
             "entity": "menu",
@@ -2713,6 +2713,14 @@
             "previous_sibling": "node_2_1533822216425"
         },
         {
+            "type": "folder",
+            "title": "Customer Care",
+            "conditions": "false",
+            "digress_in": "does_not_return",
+            "dialog_node": "node_1_1586363693745",
+            "previous_sibling": "node_3_1533758069575"
+        },
+        {
             "type": "standard",
             "output": {
                 "generic": [
@@ -2730,7 +2738,7 @@
             "metadata": {},
             "conditions": "#General_Ending",
             "dialog_node": "node_2_1533665915866",
-            "previous_sibling": "node_2_1533746927149"
+            "previous_sibling": "node_1_1586363693745"
         },
         {
             "type": "standard",
@@ -2747,11 +2755,10 @@
                     }
                 ]
             },
+            "parent": "node_1_1586363693745",
             "metadata": {},
             "conditions": "#Customer_Care_Contact_Us",
-            "digress_in": "does_not_return",
-            "dialog_node": "node_2_1533746927149",
-            "previous_sibling": "node_3_1533758069575"
+            "dialog_node": "node_2_1533746927149"
         },
         {
             "type": "standard",
@@ -3338,5 +3345,5 @@
         }
     },
     "learning_opt_out": false,
-    "status": "Available"
+    "status": "Training"
 }

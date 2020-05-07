@@ -1,0 +1,238 @@
+[
+  {
+    "User Input": "What is your phone number?",
+    "Output Text": "I didn't understand. You can try rephrasing.",
+    "Match Output": "You can call us during business hours at",
+    "Match Intent": "Customer_Care_Contact_Us",
+    "Match Entity": "",
+    "Matched Output": false,
+    "Matched Intent": true,
+    "Matched Entity": "n/a",
+    "Matched Context": "",
+    "Intent": "Customer_Care_Contact_Us",
+    "Confidence": 0.9607260227,
+    "Entities": "",
+    "Alternate Intents": true,
+    "Conversation ID": "c895a270-e5f4-44a5-a01b-b6da52f2588e",
+    "Context": {
+      "conversation_id": "c895a270-e5f4-44a5-a01b-b6da52f2588e",
+      "system": {
+        "initialized": true,
+        "dialog_stack": [
+          {
+            "dialog_node": "root"
+          }
+        ],
+        "dialog_turn_counter": 1,
+        "dialog_request_counter": 1,
+        "_node_output_map": {
+          "Anything else": {
+            "0": [
+              0
+            ]
+          }
+        },
+        "branch_exited": true,
+        "branch_exited_reason": "completed"
+      }
+    },
+    "Intent1": "Customer_Care_Contact_Us",
+    "Confidence1": 0.9607260227,
+    "Intent2": "Customer_Care_Loyalty_Status",
+    "Confidence2": 0.243389833,
+    "Intent3": "General_Agent_Capabilities",
+    "Confidence3": 0.2377432942,
+    "Intent4": "Customer_Care_Products_Offered",
+    "Confidence4": 0.2331609964,
+    "Intent5": "Customer_Care_Store_Hours",
+    "Confidence5": 0.2328313649,
+    "Intent6": "Customer_Care_Profile_Password",
+    "Confidence6": 0.2300846308,
+    "Intent7": "Customer_Care_Notification_Preferences",
+    "Confidence7": 0.2295513868,
+    "Intent8": "about_restaurant",
+    "Confidence8": 0.2234409615,
+    "Intent9": "menu",
+    "Confidence9": 0.2210985392,
+    "Intent10": "General_Ending",
+    "Confidence10": 0.218918106
+  },
+  {
+    "User Input": "I want to make a reservation at 18:00 for six",
+    "Output Text": "Ok, the reservation is for 6:00 PM.<br>Ok. The reservation is for 6 guests<br>What day would you like to come in?",
+    "Match Output": "What day would you like to come in",
+    "Match Intent": "reservation",
+    "Match Entity": "",
+    "Matched Output": true,
+    "Matched Intent": true,
+    "Matched Entity": "n/a",
+    "Matched Context": "",
+    "Intent": "reservation",
+    "Confidence": 0.9193271637,
+    "Entities": " sys-time:18:00:00[29, 37] sys-number:6[42, 45]",
+    "Alternate Intents": true,
+    "Conversation ID": "c895a270-e5f4-44a5-a01b-b6da52f2588e",
+    "Context": {
+      "conversation_id": "c895a270-e5f4-44a5-a01b-b6da52f2588e",
+      "system": {
+        "initialized": true,
+        "dialog_stack": [
+          {
+            "dialog_node": "slot_9_1585653481576",
+            "state": "in_progress"
+          }
+        ],
+        "dialog_turn_counter": 2,
+        "dialog_request_counter": 2,
+        "_node_output_map": {
+          "Anything else": {
+            "0": [
+              0
+            ]
+          },
+          "handler_8_1585750893371": [
+            0
+          ],
+          "handler_6_1585751211826": [
+            0
+          ],
+          "handler_5_1585653481591": {
+            "0": [
+              0
+            ]
+          }
+        }
+      },
+      "date": null,
+      "time": "6:00 PM",
+      "guests": 6,
+      "counter": 0,
+      "confirmation": null
+    },
+    "Intent1": "reservation",
+    "Confidence1": 0.9193271637,
+    "Intent2": "exit",
+    "Confidence2": 0.3413977146,
+    "Intent3": "Customer_Care_Redeem_Points",
+    "Confidence3": 0.2940812945,
+    "Intent4": "about_restaurant",
+    "Confidence4": 0.2594489992,
+    "Intent5": "Customer_Care_Profile_Password",
+    "Confidence5": 0.2444201022,
+    "Intent6": "menu",
+    "Confidence6": 0.241440317,
+    "Intent7": "Customer_Care_Report_Fraudulent_Use",
+    "Confidence7": 0.232346788,
+    "Intent8": "Customer_Care_Program_Inquiry",
+    "Confidence8": 0.2268631369,
+    "Intent9": "Customer_Care_Contact_Us",
+    "Confidence9": 0.2242713839,
+    "Intent10": "Customer_Care_Appointments",
+    "Confidence10": 0.2235018417
+  },
+  {
+    "User Input": "NEWCONVERSATION",
+    "Output Text": "",
+    "Match Output": "",
+    "Match Intent": "",
+    "Match Entity": "",
+    "Matched Output": "",
+    "Matched Intent": "",
+    "Matched Entity": "",
+    "Matched Context": "",
+    "Intent": "",
+    "Confidence": "",
+    "Entities": "",
+    "Alternate Intents": "",
+    "Conversation ID": "",
+    "Context": {},
+    "Intent1": "",
+    "Confidence1": "",
+    "Intent2": "",
+    "Confidence2": "",
+    "Intent3": "",
+    "Confidence3": "",
+    "Intent4": "",
+    "Confidence4": "",
+    "Intent5": "",
+    "Confidence5": "",
+    "Intent6": "",
+    "Confidence6": "",
+    "Intent7": "",
+    "Confidence7": "",
+    "Intent8": "",
+    "Confidence8": "",
+    "Intent9": "",
+    "Confidence9": "",
+    "Intent10": "",
+    "Confidence10": ""
+  },
+  {
+    "User Input": "I want to make a reservation at 19:00 for six",
+    "Output Text": "Ok, the reservation is for 7:00 PM.<br>Ok. The reservation is for 6 guests<br>What day would you like to come in?",
+    "Match Output": "the reservation is for 7:00 PM",
+    "Match Intent": "reservation",
+    "Match Entity": "",
+    "Matched Output": true,
+    "Matched Intent": true,
+    "Matched Entity": "n/a",
+    "Matched Context": "",
+    "Intent": "reservation",
+    "Confidence": 0.9228980064,
+    "Entities": " sys-time:19:00:00[29, 37] sys-number:6[42, 45]",
+    "Alternate Intents": true,
+    "Conversation ID": "69004d2b-bb30-424f-ade3-321664f70859",
+    "Context": {
+      "conversation_id": "69004d2b-bb30-424f-ade3-321664f70859",
+      "system": {
+        "initialized": true,
+        "dialog_stack": [
+          {
+            "dialog_node": "slot_9_1585653481576",
+            "state": "in_progress"
+          }
+        ],
+        "dialog_turn_counter": 1,
+        "dialog_request_counter": 1,
+        "_node_output_map": {
+          "handler_8_1585750893371": [
+            0
+          ],
+          "handler_6_1585751211826": [
+            0
+          ],
+          "handler_5_1585653481591": {
+            "0": [
+              0
+            ]
+          }
+        }
+      },
+      "date": null,
+      "time": "7:00 PM",
+      "guests": 6,
+      "counter": 0,
+      "confirmation": null
+    },
+    "Intent1": "reservation",
+    "Confidence1": 0.9228980064,
+    "Intent2": "exit",
+    "Confidence2": 0.3547615528,
+    "Intent3": "Customer_Care_Redeem_Points",
+    "Confidence3": 0.3420862913,
+    "Intent4": "Customer_Care_Report_Fraudulent_Use",
+    "Confidence4": 0.2513115287,
+    "Intent5": "about_restaurant",
+    "Confidence5": 0.2475160897,
+    "Intent6": "menu",
+    "Confidence6": 0.2392079651,
+    "Intent7": "Customer_Care_Profile_Password",
+    "Confidence7": 0.2378230453,
+    "Intent8": "no",
+    "Confidence8": 0.2316009492,
+    "Intent9": "Customer_Care_Program_Inquiry",
+    "Confidence9": 0.2279870927,
+    "Intent10": "Customer_Care_Contact_Us",
+    "Confidence10": 0.2246736959
+  }
+]
