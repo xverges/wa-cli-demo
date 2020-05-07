@@ -16,6 +16,7 @@ echo TRAVIS_PULL_REQUEST="$TRAVIS_PULL_REQUEST"
 
 for skill in ./test/flow/*; do
     if [ -d "${skill}" ]; then
+        skill=$(basename "$skill")
         SANDBOX_NAME=$(wa-cli sandbox name "${skill}")
         if [[ $SANDBOX_NAME = "${skill}" && "$DEPLOY_MAIN_BRANCH" != TRUE ]]; then
             echo "Skipping deployment of '$skill' to main branch '${MAIN_BRANCH}'"
@@ -27,6 +28,7 @@ for skill in ./test/flow/*; do
 done
 for skill in ./test/flow/*; do
     if [ -d "${skill}" ]; then
+        skill=$(basename "$skill")
         wa-cli sandbox wait-for-ready --timeout "$TRAINING_TIMEOUT_IN_SECONDS" "${skill}" || exit 1
     fi
 done

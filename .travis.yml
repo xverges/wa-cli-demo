@@ -22,12 +22,7 @@ install:
 
 
 script:
-  - |
-    echo "Launching tests..."
-    while read -r skill; do
-        echo "Running test on skill '$SANDBOX_NAME'..."
-        wa-cli sandbox test flow "$skill" || return 1
-    done < skills_to_test.txt 
+  - ./.wa-cli/travis-test.sh
 
 after_script:
   - |
