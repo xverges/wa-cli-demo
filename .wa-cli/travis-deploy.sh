@@ -8,6 +8,8 @@
 #   WA_APIKEY
 #
 
+export PYTHONUNBUFFERED=TRUE
+
 MAIN_BRANCH=$(cat ./.wa-cli/main_branch.txt)
 wa-cli init --no-prompt --main-branch "${MAIN_BRANCH}"
 echo TRAVIS_BRANCH="$TRAVIS_BRANCH"

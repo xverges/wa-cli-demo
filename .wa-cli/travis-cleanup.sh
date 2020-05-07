@@ -7,6 +7,8 @@
 #   TRAVIS_*
 #
 
+export PYTHONUNBUFFERED=TRUE
+
 if [[ -n "${TRAVIS_PULL_REQUEST_BRANCH}" ]]; then
     echo "Deleting the PR sandboxes..."
     for skill in ./test/flow/*; do

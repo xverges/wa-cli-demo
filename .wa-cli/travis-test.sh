@@ -6,6 +6,8 @@
 #   WA_APIKEY
 #
 
+export PYTHONUNBUFFERED=TRUE
+
 for skill in ./test/flow/*; do
     if [ -d "${skill}" ]; then
         skill=$(basename "$skill")
